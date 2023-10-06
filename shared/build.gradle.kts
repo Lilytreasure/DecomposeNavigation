@@ -26,6 +26,22 @@ kotlin {
                 implementation(compose.material)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+
+                // MVIKotlin
+                api(deps.mvikotlin)
+                api(deps.mviKotlin.mvikotlinMain)
+                api(deps.mviKotlin.mvikotlinExtensionsCoroutines)
+
+                
+                //Decompose Navigation
+                implementation(deps.decompose)
+                implementation(deps.decompose.jetbrains)
+
+               //Life Cycle  Management
+                api(deps.essenty.lifecycle)
+                api(deps.essenty.stateKeeper)
+
+
             }
         }
         val androidMain by getting {

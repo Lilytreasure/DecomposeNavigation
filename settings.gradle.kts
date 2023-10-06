@@ -35,6 +35,13 @@ dependencyResolutionManagement {
     repositories {
         mavenCentral()
         google()
+        gradlePluginPortal()
+        mavenLocal()
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+    }
+    versionCatalogs {
+        create("deps") {
+            from(files("deps.versions.toml"))
+        }
     }
 }
