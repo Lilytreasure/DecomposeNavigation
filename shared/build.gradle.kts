@@ -23,16 +23,14 @@ kotlin {
             dependencies {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
-                implementation(compose.material)
+                implementation(compose.material3)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
-
+                implementation(compose.materialIconsExtended)
                 // MVIKotlin
                 api(deps.mvikotlin)
                 api(deps.mviKotlin.mvikotlinMain)
                 api(deps.mviKotlin.mvikotlinExtensionsCoroutines)
-
-
                 //Decompose Navigation
                 implementation(deps.decompose)
                 implementation(deps.decompose.jetbrains)
