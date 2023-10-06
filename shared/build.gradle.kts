@@ -34,6 +34,11 @@ kotlin {
                 //Decompose Navigation
                 implementation(deps.decompose)
                 implementation(deps.decompose.jetbrains)
+                // KotlinX Serialization Json
+                implementation(deps.jetbrains.kotlinx.kotlinxSerializationJson)
+
+                // Coroutines
+                implementation(deps.jetbrains.kotlinx.kotlinxCoroutinesCore)
 
                //Life Cycle  Management
                 api(deps.essenty.lifecycle)

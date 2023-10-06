@@ -85,6 +85,9 @@ fun App() {
 
 
             }) { paddingFromPrent ->
+
+            //Todo---adding  the parent recycler view
+
             Column(
                 Modifier
                     .padding(paddingFromPrent)
