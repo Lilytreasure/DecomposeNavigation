@@ -1,7 +1,6 @@
 package listing2
 
 import com.arkivanov.decompose.ComponentContext
-import listing2.WelcomeComponent
 
 
 class DefaultWelcomeComponent(

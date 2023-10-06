@@ -2,6 +2,8 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("org.jetbrains.compose")
+    kotlin("plugin.serialization") version "1.9.0"
+    id("kotlin-parcelize")
 }
 
 kotlin {
@@ -34,16 +36,12 @@ kotlin {
                 //Decompose Navigation
                 implementation(deps.decompose)
                 implementation(deps.decompose.jetbrains)
-                // KotlinX Serialization Json
-                implementation(deps.jetbrains.kotlinx.kotlinxSerializationJson)
-
-                // Coroutines
-                implementation(deps.jetbrains.kotlinx.kotlinxCoroutinesCore)
-
-               //Life Cycle  Management
                 api(deps.essenty.lifecycle)
                 api(deps.essenty.stateKeeper)
-
+                // KotlinX Serialization Json
+                implementation(deps.jetbrains.kotlinx.kotlinxSerializationJson)
+                // Coroutines
+                implementation(deps.jetbrains.kotlinx.kotlinxCoroutinesCore)
 
             }
         }
