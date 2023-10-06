@@ -32,7 +32,7 @@ kotlin {
                 api(deps.mviKotlin.mvikotlinMain)
                 api(deps.mviKotlin.mvikotlinExtensionsCoroutines)
 
-                
+
                 //Decompose Navigation
                 implementation(deps.decompose)
                 implementation(deps.decompose.jetbrains)
