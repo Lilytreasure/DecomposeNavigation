@@ -30,11 +30,9 @@ import feeds.FeedsContent
 import message.MessageContent
 import notifications.NotificationContent
 import welcome.WelcomeContent
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RootBottomScreen(component: RootBottomComponent, modifier: Modifier = Modifier) {
-    //Parent BottomScreen
     Scaffold(topBar = {
         TopAppBar(
             colors = TopAppBarDefaults.topAppBarColors(
