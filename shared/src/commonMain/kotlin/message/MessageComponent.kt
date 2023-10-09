@@ -1,6 +1,6 @@
-package listing
+package message
 
-interface MainComponent {
+interface MessageComponent {
 
     fun onUpdateGreetingText()
     fun onBackClicked()

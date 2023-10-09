@@ -4,6 +4,7 @@ plugins {
     id("org.jetbrains.compose")
     kotlin("plugin.serialization") version "1.9.0"
     id("kotlin-parcelize")
+    id("com.arkivanov.parcelize.darwin")
 }
 
 kotlin {
@@ -38,6 +39,7 @@ kotlin {
                 implementation(deps.decompose.jetbrains)
                 api(deps.essenty.lifecycle)
                 api(deps.essenty.stateKeeper)
+
                 // KotlinX Serialization Json
                 implementation(deps.jetbrains.kotlinx.kotlinxSerializationJson)
                 // Coroutines

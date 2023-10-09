@@ -1,4 +1,4 @@
-package listing2
+package welcome
 
 import com.arkivanov.decompose.ComponentContext
 

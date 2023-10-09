@@ -1,6 +1,6 @@
-package listing2
+package feeds
 
-interface WelcomeComponent {
+interface FeedsComponent {
 
     fun onUpdateGreetingText()
     fun onBackClicked()

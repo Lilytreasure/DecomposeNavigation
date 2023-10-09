@@ -1,11 +1,11 @@
-package listing
+package feeds
 
 import com.arkivanov.decompose.ComponentContext
 
-class DefaultMainComponent(
+class DefaulFeedsComponent(
     componentContext: ComponentContext,
     private val onShowWelcome: () -> Unit,
-) : MainComponent, ComponentContext by componentContext {
+) : FeedsComponent, ComponentContext by componentContext {
 
 
     override fun onUpdateGreetingText() {

@@ -10,6 +10,8 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(project(":shared"))
+                //added decompose in android  gradle
+                implementation(deps.decompose)
             }
         }
     }
