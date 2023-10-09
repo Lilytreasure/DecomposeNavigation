@@ -57,6 +57,7 @@ class DefaultRootComponent(
 
 
     private sealed class ConfigBottom : Parcelable {
+        //added percerabe  id
 
         @Parcelize
         data object Settings : ConfigBottom()
