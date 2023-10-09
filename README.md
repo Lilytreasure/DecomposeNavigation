@@ -7,4 +7,14 @@ Decompose is a Kotlin Multiplatform library for breaking down your code into lif
 https://arkivanov.github.io/Decompose/getting-started/quick-start/<br>
 https://github.com/arkivanov/Decompose
 
+#ScreenShot
+
+ <table align="center">
+  <tr>
+    <td><img src="https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/d0ddf4d2-0f86-401f-a9f1-6a24e1053d86.png" alt="Home" style="width:250px;height:500px;"></td>
+
+  </tr>
+  
+</table><br>
+
 
