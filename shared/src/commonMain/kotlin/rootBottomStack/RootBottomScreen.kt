@@ -6,10 +6,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Feed
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.NearMe
 import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.ShoppingBag
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -51,7 +51,7 @@ fun RootBottomScreen(component: RootBottomComponent, modifier: Modifier = Modifi
                             component.openFeeds()
                         }) {
                             Icon(
-                                Icons.Filled.Feed,
+                                Icons.Filled.Favorite,
                                 contentDescription = "Localized description",
                             )
                         }
@@ -60,7 +60,7 @@ fun RootBottomScreen(component: RootBottomComponent, modifier: Modifier = Modifi
                             component.openMessage()
                         }) {
                             Icon(
-                                Icons.Filled.NearMe,
+                                Icons.Filled.ShoppingBag,
                                 contentDescription = "Localized description",
                             )
                         }

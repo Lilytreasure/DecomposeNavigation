@@ -45,7 +45,8 @@ fun WelcomeContent(component: WelcomeComponent, modifier: Modifier = Modifier) {
         10
     })
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize(),
         topBar = {
             Row(
                 modifier = Modifier
@@ -71,7 +72,7 @@ fun WelcomeContent(component: WelcomeComponent, modifier: Modifier = Modifier) {
                         .height(44.dp)
                 )
             }
-        }
+        },
 
     ) { innePadding ->
         Column(

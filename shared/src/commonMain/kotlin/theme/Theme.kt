@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 private val LightColors = lightColorScheme(
-    primary = PrimaryColor,
+    primary = customBackGround,
     onPrimary = PrimaryTextColor,
     secondary = SecondaryColor,
     onSecondary = SecondaryTextColor,
@@ -28,7 +28,7 @@ private val LightColors = lightColorScheme(
 )
 
 private val DarkColors = darkColorScheme(
-    primary = PrimaryColor,
+    primary = customBackGround,
     onPrimary = PrimaryTextColor,
     secondary = SecondaryLightColor,
     onSecondary = SecondaryTextColor,
@@ -49,7 +49,6 @@ private val DarkColors = darkColorScheme(
 @Composable
 internal fun ComposeExperimentalTheme(useDarkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val autoColors = if (useDarkTheme)LightColors else LightColors
-
     MaterialTheme(
         colorScheme = autoColors,
         shapes = Shapes,
