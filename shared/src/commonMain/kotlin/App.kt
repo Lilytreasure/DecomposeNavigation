@@ -14,9 +14,9 @@ import theme.ComposeExperimentalTheme
 @Composable
 fun App(component: RootBottomComponent, modifier: Modifier = Modifier) {
     //To  be modified
-    ComposeExperimentalTheme() {
+    ComposeExperimentalTheme(content = {
         StatusBarColors(
-            statusBarColor = MaterialTheme.colorScheme.background,
+            statusBarColor = MaterialTheme.colorScheme.primary,
             navBarColor = MaterialTheme.colorScheme.background,
         )
         Scaffold() { paddingFromPrent ->
@@ -29,7 +29,8 @@ fun App(component: RootBottomComponent, modifier: Modifier = Modifier) {
                 RootBottomScreen(component, modifier)
             }
         }
-    }
+
+    })
 }
 
 expect fun getPlatformName(): String

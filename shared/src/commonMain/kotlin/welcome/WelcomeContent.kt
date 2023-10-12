@@ -52,7 +52,7 @@ fun WelcomeContent(component: WelcomeComponent, modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 16.dp, end = 16.dp, top = 10.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 Column() {
                     Text(
@@ -81,48 +81,50 @@ fun WelcomeContent(component: WelcomeComponent, modifier: Modifier = Modifier) {
                 .padding(start = 16.dp, end = 16.dp)
         ) {
             Column(modifier = Modifier.padding(innePadding)) {
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 28.dp)
-                ) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 28.dp)
                     ) {
-                        Box(
-                            modifier = Modifier.padding(
-                                top = 17.dp,
-                                bottom = 17.dp,
-                                start = 16.dp
-                            )
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Row() {
-                                Icon(
-                                    Icons.Outlined.Search,
-                                    contentDescription = "Search"
+                            Box(
+                                modifier = Modifier.padding(
+                                    top = 17.dp,
+                                    bottom = 17.dp,
+                                    start = 16.dp
                                 )
-                                Text(
-                                    modifier = Modifier.padding(start = 1.dp),
-                                    text = "Search Coffee",
-                                    style = MaterialTheme.typography.bodySmall
-                                )
+                            ) {
+                                Row() {
+                                    Icon(
+                                        Icons.Outlined.Search,
+                                        contentDescription = "Search"
+                                    )
+                                    Text(
+                                        modifier = Modifier.padding(start = 1.dp),
+                                        text = "Search Coffee",
+                                        style = MaterialTheme.typography.bodySmall
+                                    )
+                                }
                             }
+                            Icon(
+                                Icons.Outlined.Tune,
+                                contentDescription = "filter",
+                                modifier = Modifier
+                                    .size(40.dp)
+                                    .background(
+                                        color = MaterialTheme.colorScheme.tertiary,
+                                        shape = RoundedCornerShape(14.dp)
+                                    ),
+                                tint = MaterialTheme.colorScheme.onSecondaryContainer
+                            )
                         }
-                        Icon(
-                            Icons.Outlined.Tune,
-                            contentDescription = "filter",
-                            modifier = Modifier
-                                .size(40.dp)
-                                .background(
-                                    color = MaterialTheme.colorScheme.tertiary,
-                                    shape = RoundedCornerShape(14.dp)
-                                ),
-                            tint = MaterialTheme.colorScheme.onSecondaryContainer
-                        )
                     }
-                }
+
+
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
