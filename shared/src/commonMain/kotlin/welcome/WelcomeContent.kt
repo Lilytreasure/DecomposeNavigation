@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,12 +16,15 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.Tune
 import androidx.compose.material3.Card
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -110,15 +114,20 @@ fun WelcomeContent(component: WelcomeComponent, modifier: Modifier = Modifier) {
                             contentDescription = "filter",
                             modifier = Modifier
                                 .size(40.dp)
-                                .background(color = MaterialTheme.colorScheme.tertiary, shape = RoundedCornerShape(14.dp)),
+                                .background(
+                                    color = MaterialTheme.colorScheme.tertiary,
+                                    shape = RoundedCornerShape(14.dp)
+                                ),
                             tint = MaterialTheme.colorScheme.onSecondaryContainer
                         )
                     }
                 }
-                Row(modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top=16.dp),
-                    horizontalArrangement = Arrangement.Center){
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 16.dp),
+                    horizontalArrangement = Arrangement.Center
+                ) {
                     Card(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -139,28 +148,49 @@ fun WelcomeContent(component: WelcomeComponent, modifier: Modifier = Modifier) {
                                 modifier = Modifier
                                     .matchParentSize()
                             )
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.Start,
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Text(text = "Buy one get one FREE",
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    color = MaterialTheme.colorScheme.onSecondaryContainer,
-                                    modifier = Modifier
-                                        .fillMaxWidth(0.3f)
-                                        .padding(start = 16.dp))
-//
+                            Column() {
+                                Text(
+                                    text = "Promo",
+                                    modifier = Modifier.padding(start = 16.dp)
+                                )
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.Start,
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Text(
+                                        text = "Buy one get one FREE",
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        color = MaterialTheme.colorScheme.onSecondaryContainer,
+                                        modifier = Modifier
+                                            .fillMaxWidth(0.3f)
+                                            .padding(start = 16.dp)
+                                    )
+                                }
                             }
                         }
                     }
                 }
                 // Horizontal row
-                LazyRow(modifier = Modifier.padding(top=20.dp)){
+                LazyRow(modifier = Modifier.padding(top = 20.dp)) {
                     items(5) {
-                     FilledTonalButton {  }
+                        FilledTonalButton { }
+                        Spacer(modifier = Modifier.padding(start = 5.dp))
                     }
                 }
+                LazyVerticalStaggeredGrid(
+                    columns = StaggeredGridCells.Fixed(2),
+                    verticalItemSpacing = 10.dp,
+                    horizontalArrangement = Arrangement.spacedBy(24.dp),
+                    content = {
+                        items(10) {
+                            ProductsCard()
+                        }
+                    },
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(top = 20.dp)
+                )
             }
         }
     }
@@ -170,5 +200,43 @@ fun WelcomeContent(component: WelcomeComponent, modifier: Modifier = Modifier) {
 fun FilledTonalButton(onClick: () -> Unit) {
     FilledTonalButton(onClick = { onClick() }) {
         Text("Cappuccino")
+    }
+}
+
+
+@OptIn(ExperimentalResourceApi::class)
+@Composable
+fun ProductsCard() {
+    ElevatedCard() {
+        Column() {
+            Box(
+                modifier = Modifier.fillMaxSize()
+            ) {
+                Image(
+                    painter = painterResource("CoffeeCup.png"),
+                    contentDescription = null,
+                    contentScale = ContentScale.FillWidth,
+                    modifier = Modifier.fillMaxSize()
+                )
+                Column() {
+                    Text(
+                        text = "6.5",
+                        modifier = Modifier.padding(start = 12.dp),
+                        color = MaterialTheme.colorScheme.onSecondaryContainer
+                    )
+                }
+            }
+            Column(modifier = Modifier.padding(top = 12.dp, start = 12.dp)) {
+                Text(text = "Cappucino")
+                Text(text = "with Chocolate")
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(text = "$ 4.53")
+                }
+            }
+        }
+
     }
 }
