@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -48,152 +49,165 @@ fun WelcomeContent(component: WelcomeComponent, modifier: Modifier = Modifier) {
         modifier = Modifier
             .fillMaxSize(),
         topBar = {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 16.dp, end = 16.dp, top = 10.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-            ) {
-                Column() {
-                    Text(
-                        text = "Location",
-                        style = MaterialTheme.typography.labelSmall
-                    )
-                    Text(
-                        text = "Dennis",
-                        style = MaterialTheme.typography.titleSmall,
-                    )
-                }
-                Image(
-                    painter = painterResource("compose-multiplatform.xml"),
-                    contentDescription = "profile Picture",
-                    modifier = Modifier
-                        .width(44.dp)
-                        .height(44.dp)
-                )
-            }
-        },
-
-    ) { innePadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 16.dp, end = 16.dp)
-        ) {
-            Column(modifier = Modifier.padding(innePadding)) {
-                    Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 28.dp)
-                    ) {
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Box(
-                                modifier = Modifier.padding(
-                                    top = 17.dp,
-                                    bottom = 17.dp,
-                                    start = 16.dp
-                                )
-                            ) {
-                                Row() {
-                                    Icon(
-                                        Icons.Outlined.Search,
-                                        contentDescription = "Search"
-                                    )
-                                    Text(
-                                        modifier = Modifier.padding(start = 1.dp),
-                                        text = "Search Coffee",
-                                        style = MaterialTheme.typography.bodySmall
-                                    )
-                                }
-                            }
-                            Icon(
-                                Icons.Outlined.Tune,
-                                contentDescription = "filter",
-                                modifier = Modifier
-                                    .size(40.dp)
-                                    .background(
-                                        color = MaterialTheme.colorScheme.tertiary,
-                                        shape = RoundedCornerShape(14.dp)
-                                    ),
-                                tint = MaterialTheme.colorScheme.onSecondaryContainer
-                            )
-                        }
-                    }
-
-
+            Row(modifier = Modifier.background(color = MaterialTheme.colorScheme.primary)) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 16.dp),
-                    horizontalArrangement = Arrangement.Center
+                        .padding(start = 16.dp, end = 16.dp, top = 10.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
-                    Card(
+                    Column() {
+                        Text(
+                            text = "Location",
+                            style = MaterialTheme.typography.labelSmall
+                        )
+                        Text(
+                            text = "Dennis",
+                            style = MaterialTheme.typography.titleSmall,
+                        )
+                    }
+                    Image(
+                        painter = painterResource("compose-multiplatform.xml"),
+                        contentDescription = "profile Picture",
+                        modifier = Modifier
+                            .width(44.dp)
+                            .height(44.dp)
+                    )
+                }
+
+            }
+        },
+
+        ) { innePadding ->
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding()
+        ) {
+            Column(modifier = Modifier.padding(innePadding)) {
+                Box() {
+                    Column(
+                        modifier = Modifier
+                            .background(color = MaterialTheme.colorScheme.primary)
+                            .fillMaxHeight(0.35f)
+                    ) {
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 28.dp, start = 16.dp, end = 16.dp)
+                        ) {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Box(
+                                    modifier = Modifier.padding(
+                                        top = 17.dp,
+                                        bottom = 17.dp,
+                                        start = 16.dp
+                                    )
+                                ) {
+                                    Row() {
+                                        Icon(
+                                            Icons.Outlined.Search,
+                                            contentDescription = "Search"
+                                        )
+                                        Text(
+                                            modifier = Modifier.padding(start = 1.dp),
+                                            text = "Search Coffee",
+                                            style = MaterialTheme.typography.bodySmall
+                                        )
+                                    }
+                                }
+                                Icon(
+                                    Icons.Outlined.Tune,
+                                    contentDescription = "filter",
+                                    modifier = Modifier
+                                        .size(40.dp)
+                                        .background(
+                                            color = MaterialTheme.colorScheme.tertiary,
+                                            shape = RoundedCornerShape(14.dp)
+                                        ),
+                                    tint = MaterialTheme.colorScheme.onSecondaryContainer
+                                )
+                            }
+                        }
+                    }
+                    Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .size(90.dp)
-                            .padding(top = 6.dp)
-                            .wrapContentHeight(align = Alignment.Top),
-                        shape = RoundedCornerShape(16.dp),
+                            .padding(top = 150.dp, start = 16.dp, end = 16.dp),
+                        horizontalArrangement = Arrangement.Center
                     ) {
-                        Box(
-                            modifier = Modifier.fillMaxSize(),
-                            contentAlignment = Alignment.Center
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .size(90.dp)
+                                .padding(top = 6.dp)
+                                .wrapContentHeight(align = Alignment.Top),
+                            shape = RoundedCornerShape(16.dp),
                         ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
 
-                            Image(
-                                painter = painterResource("image 8.png"),
-                                contentDescription = null,
-                                contentScale = ContentScale.FillWidth,
-                                modifier = Modifier
-                                    .matchParentSize()
-                            )
-                            Column() {
-                                Text(
-                                    text = "Promo",
-                                    modifier = Modifier.padding(start = 16.dp)
+                                Image(
+                                    painter = painterResource("image 8.png"),
+                                    contentDescription = null,
+                                    contentScale = ContentScale.FillWidth,
+                                    modifier = Modifier
+                                        .matchParentSize()
                                 )
-                                Row(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    horizontalArrangement = Arrangement.Start,
-                                    verticalAlignment = Alignment.CenterVertically
-                                ) {
+                                Column() {
                                     Text(
-                                        text = "Buy one get one FREE",
-                                        style = MaterialTheme.typography.bodyMedium,
-                                        color = MaterialTheme.colorScheme.onSecondaryContainer,
-                                        modifier = Modifier
-                                            .fillMaxWidth(0.3f)
-                                            .padding(start = 16.dp)
+                                        text = "Promo",
+                                        modifier = Modifier.padding(start = 16.dp)
                                     )
+                                    Row(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        horizontalArrangement = Arrangement.Start,
+                                        verticalAlignment = Alignment.CenterVertically
+                                    ) {
+                                        Text(
+                                            text = "Buy one get one FREE",
+                                            style = MaterialTheme.typography.bodyMedium,
+                                            color = MaterialTheme.colorScheme.onSecondaryContainer,
+                                            modifier = Modifier
+                                                .fillMaxWidth(0.3f)
+                                                .padding(start = 16.dp)
+                                        )
+                                    }
                                 }
                             }
                         }
                     }
                 }
-                // Horizontal row
-                LazyRow(modifier = Modifier.padding(top = 20.dp)) {
-                    items(5) {
-                        FilledTonalButton { }
-                        Spacer(modifier = Modifier.padding(start = 5.dp))
-                    }
-                }
-                LazyVerticalStaggeredGrid(
-                    columns = StaggeredGridCells.Fixed(2),
-                    verticalItemSpacing = 10.dp,
-                    horizontalArrangement = Arrangement.spacedBy(24.dp),
-                    content = {
-                        items(10) {
-                            ProductsCard()
+                Column() {
+                    LazyRow(
+                        modifier = Modifier
+                            .padding(top = 20.dp, start = 16.dp, end = 16.dp)
+                    ) {
+                        items(5) {
+                            FilledTonalButton { }
+                            Spacer(modifier = Modifier.padding(start = 5.dp))
                         }
-                    },
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(top = 20.dp)
-                )
+                    }
+                    LazyVerticalStaggeredGrid(
+                        columns = StaggeredGridCells.Fixed(2),
+                        verticalItemSpacing = 10.dp,
+                        horizontalArrangement = Arrangement.spacedBy(24.dp),
+                        content = {
+                            items(10) {
+                                ProductsCard()
+                            }
+                        },
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(top = 20.dp, start = 16.dp, end = 16.dp)
+                    )
+                }
             }
         }
     }
