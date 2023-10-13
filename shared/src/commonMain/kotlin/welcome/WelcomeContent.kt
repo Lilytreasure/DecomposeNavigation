@@ -179,7 +179,7 @@ fun WelcomeContent(component: WelcomeComponent, modifier: Modifier = Modifier) {
                                             color = MaterialTheme.colorScheme.onSecondaryContainer,
                                             modifier = Modifier
                                                 .fillMaxWidth(0.5f)
-                                                .padding(start = 16.dp)
+                                                .padding(start = 16.dp),
                                         )
                                     }
                                 }

@@ -53,5 +53,6 @@ internal fun ComposeExperimentalTheme(useDarkTheme: Boolean = isSystemInDarkThem
         colorScheme = autoColors,
         shapes = Shapes,
         content = content,
+        typography = getTypography()
     )
 }
