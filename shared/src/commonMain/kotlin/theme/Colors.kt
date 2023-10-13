@@ -23,6 +23,7 @@ val ErrorColor = Color(0xFFFF8989)
 val OnErrorColor = Color(0xFF000000)
 
 val iconColor = Color(0xFFC67C4E)
+ val buttonColor = Color(0xffED5151)
 
 const val SessionColor = 0xFfBA4949
 const val ShortBreakColor = 0xFf38858A

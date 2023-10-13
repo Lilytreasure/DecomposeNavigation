@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
@@ -24,7 +23,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.Tune
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
@@ -38,6 +39,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
+import theme.buttonColor
 
 @OptIn(ExperimentalResourceApi::class, ExperimentalFoundationApi::class)
 @Composable
@@ -74,7 +76,6 @@ fun WelcomeContent(component: WelcomeComponent, modifier: Modifier = Modifier) {
                             .height(44.dp)
                     )
                 }
-
             }
         },
 
@@ -89,7 +90,7 @@ fun WelcomeContent(component: WelcomeComponent, modifier: Modifier = Modifier) {
                     Column(
                         modifier = Modifier
                             .background(color = MaterialTheme.colorScheme.primary)
-                            .fillMaxHeight(0.35f)
+                            .fillMaxHeight(0.3f)
                     ) {
                         Card(
                             modifier = Modifier
@@ -137,15 +138,14 @@ fun WelcomeContent(component: WelcomeComponent, modifier: Modifier = Modifier) {
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(top = 150.dp, start = 16.dp, end = 16.dp),
+                            .fillMaxHeight(0.41f)
+                            .padding(top = 110.dp, start = 16.dp, end = 16.dp),
                         horizontalArrangement = Arrangement.Center
                     ) {
                         Card(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .size(90.dp)
-                                .padding(top = 6.dp)
-                                .wrapContentHeight(align = Alignment.Top),
+                                .fillMaxHeight(),
                             shape = RoundedCornerShape(16.dp),
                         ) {
                             Box(
@@ -156,15 +156,18 @@ fun WelcomeContent(component: WelcomeComponent, modifier: Modifier = Modifier) {
                                 Image(
                                     painter = painterResource("image 8.png"),
                                     contentDescription = null,
-                                    contentScale = ContentScale.FillWidth,
+                                    contentScale = ContentScale.Crop,
                                     modifier = Modifier
                                         .matchParentSize()
                                 )
                                 Column() {
-                                    Text(
-                                        text = "Promo",
-                                        modifier = Modifier.padding(start = 16.dp)
-                                    )
+                                    Row(
+                                        modifier = Modifier
+                                            .padding(start = 16.dp)
+                                    ) {
+                                        ElevatedButtonExample()
+                                    }
+
                                     Row(
                                         modifier = Modifier.fillMaxWidth(),
                                         horizontalArrangement = Arrangement.Start,
@@ -172,10 +175,10 @@ fun WelcomeContent(component: WelcomeComponent, modifier: Modifier = Modifier) {
                                     ) {
                                         Text(
                                             text = "Buy one get one FREE",
-                                            style = MaterialTheme.typography.bodyMedium,
+                                            style = MaterialTheme.typography.headlineSmall,
                                             color = MaterialTheme.colorScheme.onSecondaryContainer,
                                             modifier = Modifier
-                                                .fillMaxWidth(0.3f)
+                                                .fillMaxWidth(0.5f)
                                                 .padding(start = 16.dp)
                                         )
                                     }
@@ -220,7 +223,6 @@ fun FilledTonalButton(onClick: () -> Unit) {
     }
 }
 
-
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 fun ProductsCard() {
@@ -255,5 +257,15 @@ fun ProductsCard() {
             }
         }
 
+    }
+}
+
+@Composable
+fun ElevatedButtonExample() {
+    ElevatedButton(modifier = Modifier
+        .height(35.dp),
+        colors = ButtonDefaults.buttonColors(containerColor = buttonColor),
+        onClick = { }) {
+        Text("Promo")
     }
 }
