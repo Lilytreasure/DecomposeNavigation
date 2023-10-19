@@ -20,6 +20,7 @@ kotlin {
             isStatic = true
         }
     }
+    //add  jvm support
 
     sourceSets {
         val commonMain by getting {
