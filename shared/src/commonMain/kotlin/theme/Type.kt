@@ -12,184 +12,184 @@ import platform.font
 
 @Composable
 internal fun getTypography(): Typography {
-    val montserratRegular =
+    val poppinsRegular =
         font(
-            "Montserrat",
-            "montserrat_regular",
+            "poppins",
+            "poppins_regular",
             FontWeight.Normal,
             FontStyle.Normal,
         )
 
-    val montserratBold =
+    val poppinsBold =
         font(
-            "Montserrat",
-            "montserrat_bold",
+            "poppins",
+            "poppins_bold",
             FontWeight.Bold,
             FontStyle.Normal,
         )
 
-    val montserratLight =
+    val poppinsLight =
         font(
-            "Montserrat",
-            "montserrat_light",
+            "poppins",
+            "poppins_light",
             FontWeight.Light,
             FontStyle.Normal,
         )
 
-    val montserratMedium =
+    val poppinsMedium =
         font(
-            "Montserrat",
-            "montserrat_medium",
+            "poppins",
+            "poppins_medium",
             FontWeight.Medium,
             FontStyle.Normal,
         )
 
-    val montserratSemiBold =
+    val poppinsSemiBold =
         font(
-            "Montserrat",
-            "montserrat_semi_bold",
+            "poppins",
+            "poppins_semiBold",
             FontWeight.SemiBold,
             FontStyle.Normal,
         )
 
-    val montserratThin =
+    val poppinsThin =
         font(
-            "Montserrat",
-            "montserrat_thin",
+            "poppins",
+            "poppins_thin",
             FontWeight.Thin,
             FontStyle.Normal,
         )
 
-    val montserratExtraBold =
+    val poppinsExtraBold =
         font(
-            "Montserrat",
-            "montserrat_extrabold",
+            "poppins",
+            "poppins_extraBold",
             FontWeight.ExtraBold,
             FontStyle.Normal,
         )
 
-    val montserratExtraLight =
+    val poppinsExtraLight =
         font(
-            "Montserrat",
-            "montserrat_extralight",
+            "poppins",
+            "poppins_extraLight",
             FontWeight.ExtraLight,
             FontStyle.Normal,
         )
-    val montserratBlack = font(
-        "Montserrat",
-        "montserrat_black",
+    val poppinsBlack = font(
+        "poppins",
+        "poppins_black",
         FontWeight.Black,
         FontStyle.Normal,
     )
 
     @Composable
-    fun montserrat() = FontFamily(
-        montserratThin,
-        montserratExtraLight,
-        montserratLight,
-        montserratRegular,
-        montserratMedium,
-        montserratSemiBold,
-        montserratBold,
-        montserratExtraBold,
-        montserratBlack,
+    fun poppins() = FontFamily(
+       poppinsThin,
+       poppinsExtraLight,
+       poppinsLight,
+       poppinsRegular,
+       poppinsMedium,
+       poppinsSemiBold,
+       poppinsBold,
+       poppinsExtraBold,
+       poppinsBlack,
     )
 
     return Typography(
         displayLarge = TextStyle(
-            fontFamily = montserrat(),
+            fontFamily =poppins(),
             fontWeight = FontWeight.W400,
             fontSize = 50.sp,
             // lineHeight = 64.sp,
-            // letterSpacing = (-0.25).sp,
+            // letterSpacing = (_0.25).sp,
         ),
         displayMedium = TextStyle(
-            fontFamily = montserrat(),
+            fontFamily =poppins(),
             fontWeight = FontWeight.W400,
             fontSize = 40.sp,
             // lineHeight = 52.sp,
         ),
         displaySmall = TextStyle(
-            fontFamily = montserrat(),
+            fontFamily =poppins(),
             fontWeight = FontWeight.W400,
             fontSize = 30.sp,
             // lineHeight = 44.sp,
         ),
         headlineLarge = TextStyle(
-            fontFamily = montserrat(),
+            fontFamily =poppins(),
             fontWeight = FontWeight.W400,
             fontSize = 28.sp,
             // lineHeight = 40.sp,
         ),
         headlineMedium = TextStyle(
-            fontFamily = montserrat(),
+            fontFamily =poppins(),
             fontWeight = FontWeight.W400,
             fontSize = 24.sp,
             // lineHeight = 36.sp,
         ),
         headlineSmall = TextStyle(
-            fontFamily = montserrat(),
+            fontFamily =poppins(),
             fontWeight = FontWeight.W400,
             fontSize = 20.sp,
             // lineHeight = 32.sp,
         ),
         titleLarge = TextStyle(
-            fontFamily = montserrat(),
+            fontFamily =poppins(),
             fontWeight = FontWeight.W700,
             fontSize = 18.sp,
             // lineHeight = 28.sp,
         ),
         titleMedium = TextStyle(
-            fontFamily = montserrat(),
+            fontFamily =poppins(),
             fontWeight = FontWeight.W700,
             fontSize = 14.sp,
             // lineHeight = 24.sp,
             // letterSpacing = 0.1.sp,
         ),
         titleSmall = TextStyle(
-            fontFamily = montserrat(),
+            fontFamily =poppins(),
             fontWeight = FontWeight.W500,
             fontSize = 12.sp,
             // lineHeight = 20.sp,
             // letterSpacing = 0.1.sp,
         ),
         bodyLarge = TextStyle(
-            fontFamily = montserrat(),
+            fontFamily =poppins(),
             fontWeight = FontWeight.W400,
             fontSize = 14.sp,
             // lineHeight = 24.sp,
             // letterSpacing = 0.5.sp,
         ),
         bodyMedium = TextStyle(
-            fontFamily = montserrat(),
+            fontFamily =poppins(),
             fontWeight = FontWeight.W400,
             fontSize = 12.sp,
             // lineHeight = 20.sp,
             // letterSpacing = 0.25.sp,
         ),
         bodySmall = TextStyle(
-            fontFamily = montserrat(),
+            fontFamily =poppins(),
             fontWeight = FontWeight.W400,
             fontSize = 11.sp,
             // lineHeight = 16.sp,
             // letterSpacing = 0.4.sp,
         ),
         labelLarge = TextStyle(
-            fontFamily = montserrat(),
+            fontFamily =poppins(),
             fontWeight = FontWeight.W400,
             fontSize = 13.sp,
             // lineHeight = 20.sp,
             // letterSpacing = 0.1.sp,
         ),
         labelMedium = TextStyle(
-            fontFamily = montserrat(),
+            fontFamily =poppins(),
             fontWeight = FontWeight.W400,
             fontSize = 11.sp,
             // lineHeight = 16.sp,
             // letterSpacing = 0.5.sp,
         ),
         labelSmall = TextStyle(
-            fontFamily = montserrat(),
+            fontFamily =poppins(),
             fontWeight = FontWeight.W500,
             fontSize = 9.sp,
             // lineHeight = 16.sp,
