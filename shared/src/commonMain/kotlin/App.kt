@@ -14,6 +14,7 @@ import theme.ComposeExperimentalTheme
 @Composable
 fun App(component: RootBottomComponent, modifier: Modifier = Modifier) {
     //To  be modified
+    //Add reactive ui dependencies to adapt to change in screen size
     ComposeExperimentalTheme(content = {
         StatusBarColors(
             statusBarColor = MaterialTheme.colorScheme.primary,
