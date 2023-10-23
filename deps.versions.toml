@@ -30,7 +30,7 @@ gms = "4.4.0"
 analytics = "21.3.0"
 crashlytics = "18.3.2"
 accompanist-systemUIController = "0.32.0"
-ktlint = "11.6.0"
+ktlint = "11.6.1"
 detekt = "1.19.0"
 spotless = "5.17.1"
 
