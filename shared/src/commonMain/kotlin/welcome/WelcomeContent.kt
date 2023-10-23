@@ -43,7 +43,10 @@ import theme.buttonColor
 
 @OptIn(ExperimentalResourceApi::class, ExperimentalFoundationApi::class)
 @Composable
-fun WelcomeContent(component: WelcomeComponent, modifier: Modifier = Modifier) {
+fun WelcomeContent(
+    component: WelcomeComponent,
+    modifier: Modifier = Modifier
+) {
     val pagerState = rememberPagerState(pageCount = {
         10
     })
@@ -61,15 +64,17 @@ fun WelcomeContent(component: WelcomeComponent, modifier: Modifier = Modifier) {
                     Column() {
                         Text(
                             text = "Location",
-                            style = MaterialTheme.typography.labelSmall
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSecondaryContainer
                         )
                         Text(
                             text = "Dennis",
                             style = MaterialTheme.typography.titleSmall,
+                            color = MaterialTheme.colorScheme.onSecondaryContainer
                         )
                     }
                     Image(
-                        painter = painterResource("compose-multiplatform.xml"),
+                        painter = painterResource("img.png"),
                         contentDescription = "profile Picture",
                         modifier = Modifier
                             .width(44.dp)

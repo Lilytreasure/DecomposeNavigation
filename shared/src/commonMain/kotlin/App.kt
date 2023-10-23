@@ -30,7 +30,6 @@ fun App(component: RootBottomComponent, modifier: Modifier = Modifier) {
                 RootBottomScreen(component, modifier)
             }
         }
-
     })
 }
 
