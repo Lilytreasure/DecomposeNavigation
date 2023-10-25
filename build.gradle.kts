@@ -4,6 +4,9 @@ buildscript {
         classpath(deps.parcelizeDarwin.gradlePlug)
         classpath(deps.kotlin.kotlinGradlePlug)
         classpath("com.android.tools.build:gradle:8.1.1")
+        //classpath(deps.plugins.spotless)
+       // classpath(deps.plugins.ktlint)
+        //classpath(deps.plugins.detekt)
     }
 }
 
@@ -16,3 +19,5 @@ plugins {
     id("org.jetbrains.compose").apply(false)
 
 }
+
+
