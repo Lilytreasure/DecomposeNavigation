@@ -45,12 +45,15 @@ kotlin {
                 implementation(deps.jetbrains.kotlinx.kotlinxSerializationJson)
                 // Coroutines
                 implementation(deps.jetbrains.kotlinx.kotlinxCoroutinesCore)
+                api("com.mohamedrejeb.calf:calf-ui:0.2.0")
+                implementation("com.mohamedrejeb.calf:calf-file-picker:0.2.0")
+                implementation("com.darkrockstudios:mpfilepicker:3.0.0")
 
             }
         }
         val androidMain by getting {
             dependencies {
-                api("androidx.activity:activity-compose:1.8.0")
+                api("androidx.activity:activity-compose:1.8.1")
                 api("androidx.appcompat:appcompat:1.6.1")
                 api("androidx.core:core-ktx:1.12.0")
                 implementation(deps.accompanist.systemUIController)

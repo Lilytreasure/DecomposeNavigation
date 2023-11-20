@@ -73,6 +73,9 @@ fun WelcomeContent(
                             color = MaterialTheme.colorScheme.onSecondaryContainer
                         )
                     }
+                    //open file picker and set profile  picture
+
+
                     Image(
                         painter = painterResource("img.png"),
                         contentDescription = "profile Picture",
