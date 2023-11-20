@@ -19,10 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -31,11 +28,17 @@ import com.mohamedrejeb.calf.picker.FilePickerFileType
 import com.mohamedrejeb.calf.picker.FilePickerSelectionMode
 import com.mohamedrejeb.calf.picker.rememberFilePickerLauncher
 import feeds.FilledTonalButtonExample
+import kotlinx.coroutines.launch
+import platform.PermissionHandler
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MessageContent(component: MessageComponent, modifier: Modifier = Modifier) {
-    var showFilePicker by remember { mutableStateOf(false) }
+fun MessageContent(
+    component: MessageComponent,
+    modifier: Modifier = Modifier,
+    permissionHandler: PermissionHandler? = null
+) {
+    val coroutineScope = rememberCoroutineScope()
 
     val pickerLauncher = rememberFilePickerLauncher(
         type = FilePickerFileType.All,
@@ -48,6 +51,17 @@ fun MessageContent(component: MessageComponent, modifier: Modifier = Modifier) {
             }
         }
     )
+
+    suspend fun performAction() {
+        permissionHandler?.requestReadStoragePermission { isGranted ->
+            if (isGranted) {
+                println("Permission has been Granted:::::::")
+            } else {
+                println("Permission has been Denied:::::::")
+
+            }
+        }
+    }
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -101,8 +115,19 @@ fun MessageContent(component: MessageComponent, modifier: Modifier = Modifier) {
                 //open local storage and load the image
                 FilledTonalButtonExample(
                     onClick = {
+                        //pickerLauncher.launch()
+                        coroutineScope.launch {
+                            // Request the permission
+                            permissionHandler?.requestReadStoragePermission { isGranted ->
+                                // Handle the result
+                                if (isGranted) {
+                                    println("Permission has been Granted:::::::")
+                                } else {
+                                    println("Permission has been Denied:::::::")
+                                }
+                            }
+                        }
 
-                        //  pickerLauncher.launch()
                     },
                     label = " Pick Up "
                 )
