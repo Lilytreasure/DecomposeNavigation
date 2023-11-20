@@ -6,10 +6,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.ShoppingBag
+import androidx.compose.material.icons.outlined.Favorite
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Notifications
+import androidx.compose.material.icons.outlined.ShoppingBag
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -42,7 +42,7 @@ fun RootBottomScreen(component: RootBottomComponent, modifier: Modifier = Modifi
                             component.openHome()
                         }) {
                             Icon(
-                                Icons.Filled.Home,
+                                Icons.Outlined.Home,
                                 contentDescription = "Localized description",
                             )
                         }
@@ -51,7 +51,7 @@ fun RootBottomScreen(component: RootBottomComponent, modifier: Modifier = Modifi
                             component.openFeeds()
                         }) {
                             Icon(
-                                Icons.Filled.Favorite,
+                                Icons.Outlined.Favorite,
                                 contentDescription = "Localized description",
                             )
                         }
@@ -60,7 +60,7 @@ fun RootBottomScreen(component: RootBottomComponent, modifier: Modifier = Modifi
                             component.openMessage()
                         }) {
                             Icon(
-                                Icons.Filled.ShoppingBag,
+                                Icons.Outlined.ShoppingBag,
                                 contentDescription = "Localized description",
                             )
                         }
@@ -69,7 +69,7 @@ fun RootBottomScreen(component: RootBottomComponent, modifier: Modifier = Modifi
                             component.openNotifications()
                         }) {
                             Icon(
-                                Icons.Filled.Notifications,
+                                Icons.Outlined.Notifications,
                                 contentDescription = "Localized description"
                             )
                         }
