@@ -19,14 +19,35 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.mohamedrejeb.calf.io.readByteArray
+import com.mohamedrejeb.calf.picker.FilePickerFileType
+import com.mohamedrejeb.calf.picker.FilePickerSelectionMode
+import com.mohamedrejeb.calf.picker.rememberFilePickerLauncher
 import feeds.FilledTonalButtonExample
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MessageContent(component: MessageComponent, modifier: Modifier = Modifier) {
+    var showFilePicker by remember { mutableStateOf(false) }
+
+    val pickerLauncher = rememberFilePickerLauncher(
+        type = FilePickerFileType.All,
+        selectionMode = FilePickerSelectionMode.Single,
+        onResult = { files ->
+            files.firstOrNull()?.let { file ->
+                // Do something with the selected file
+                // You can get the ByteArray of the file
+                file.readByteArray()
+            }
+        }
+    )
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -66,17 +87,23 @@ fun MessageContent(component: MessageComponent, modifier: Modifier = Modifier) {
             )
 
         }
-    ) {innerPadding->
-        Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp)){
-            Spacer(modifier =Modifier.padding(innerPadding))
-            Row(modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween){
+    ) { innerPadding ->
+        Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {
+            Spacer(modifier = Modifier.padding(innerPadding))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
                 FilledTonalButtonExample(
                     onClick = {},
                     label = " Deliver "
                 )
+                //open local storage and load the image
                 FilledTonalButtonExample(
-                    onClick = {},
+                    onClick = {
+
+                        //  pickerLauncher.launch()
+                    },
                     label = " Pick Up "
                 )
             }

@@ -47,6 +47,7 @@ kotlin {
                 implementation(deps.jetbrains.kotlinx.kotlinxCoroutinesCore)
                 api("com.mohamedrejeb.calf:calf-ui:0.2.0")
                 implementation("com.mohamedrejeb.calf:calf-file-picker:0.2.0")
+                implementation("com.darkrockstudios:mpfilepicker:3.0.0")
 
             }
         }
