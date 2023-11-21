@@ -128,7 +128,6 @@ fun MessageContent(
                     }
                 }
             )
-
         }
     ) { innerPadding ->
         Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {
@@ -141,8 +140,6 @@ fun MessageContent(
                     onClick = {
                         //load the pdf
                         pdfPickerLauncher.launch()
-
-
                     },
                     label = " Deliver "
                 )
