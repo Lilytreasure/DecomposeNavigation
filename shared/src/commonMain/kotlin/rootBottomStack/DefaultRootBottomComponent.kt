@@ -3,9 +3,11 @@ package rootBottomStack
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
+import com.arkivanov.decompose.router.stack.active
 import com.arkivanov.decompose.router.stack.bringToFront
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.value.Value
+import com.arkivanov.essenty.lifecycle.Lifecycle
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
 import feeds.DefaulFeedsComponent
@@ -50,9 +52,11 @@ class DefaultRootBottomComponent(
             is ConfigBottom.Feeds -> RootBottomComponent.ChildBottom.FeedsChild(
                 feedsComponent(componentContext)
             )
+
             is ConfigBottom.Message -> RootBottomComponent.ChildBottom.MessageChild(
                 messageComponent(componentContext)
             )
+
             is ConfigBottom.Notification -> RootBottomComponent.ChildBottom.NotificationsChild(
                 notificationComponent(componentContext)
             )
@@ -76,6 +80,7 @@ class DefaultRootBottomComponent(
             }
 
         )
+
     private fun messageComponent(componentContext: ComponentContext): MessageComponent =
         DefaultMessageComponent(
             componentContext = componentContext,
@@ -84,6 +89,7 @@ class DefaultRootBottomComponent(
             }
 
         )
+
     private fun notificationComponent(componentContext: ComponentContext): NotificationComponent =
         DefaultNotificationComponent(
             componentContext = componentContext,
@@ -92,7 +98,6 @@ class DefaultRootBottomComponent(
             }
 
         )
-
 
     override fun openHome() {
         navigationBottomStackNavigation.bringToFront(ConfigBottom.Welcome)
@@ -110,18 +115,34 @@ class DefaultRootBottomComponent(
         navigationBottomStackNavigation.bringToFront(ConfigBottom.Notification)
     }
 
+
     private sealed class ConfigBottom : Parcelable {
         @Parcelize
         data object Welcome : ConfigBottom()
 
         @Parcelize
         data object Feeds : ConfigBottom()
+
         @Parcelize
         data object Message : ConfigBottom()
+
         @Parcelize
         data object Notification : ConfigBottom()
 
     }
 
+    init {
+        lifecycle.subscribe(object : Lifecycle.Callbacks {
+            override fun onResume() {
+                when (childStackBottom.active.configuration) {
+                    is ConfigBottom.Message -> {
+                        super.onResume()
+                    }
+
+                }
+            }
+        })
+
+    }
 
 }

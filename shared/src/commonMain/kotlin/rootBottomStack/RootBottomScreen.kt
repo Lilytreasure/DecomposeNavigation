@@ -96,7 +96,7 @@ fun RootBottomScreen(component: RootBottomComponent, modifier: Modifier = Modifi
                     when (val child = it.instance) {
                         is RootBottomComponent.ChildBottom.WelcomeChild -> WelcomeContent(component = child.component)
                         is RootBottomComponent.ChildBottom.FeedsChild -> FeedsContent(component = child.component)
-                        is RootBottomComponent.ChildBottom.MessageChild -> MessageContent(component = child.component)
+                        is RootBottomComponent.ChildBottom.MessageChild -> MessageContent(component = child.component,modifier)
                         is RootBottomComponent.ChildBottom.NotificationsChild -> NotificationContent(
                             component = child.component
                         )

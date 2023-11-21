@@ -1,5 +1,6 @@
 package message
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,48 +20,61 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.mohamedrejeb.calf.io.readByteArray
+import com.darkrockstudios.libraries.mpfilepicker.FilePicker
+import com.mohamedrejeb.calf.io.name
 import com.mohamedrejeb.calf.picker.FilePickerFileType
 import com.mohamedrejeb.calf.picker.FilePickerSelectionMode
 import com.mohamedrejeb.calf.picker.rememberFilePickerLauncher
 import feeds.FilledTonalButtonExample
-import kotlinx.coroutines.launch
-import platform.PermissionHandler
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.painterResource
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalResourceApi::class)
 @Composable
 fun MessageContent(
     component: MessageComponent,
     modifier: Modifier = Modifier,
-    permissionHandler: PermissionHandler? = null
 ) {
     val coroutineScope = rememberCoroutineScope()
 
     val pickerLauncher = rememberFilePickerLauncher(
-        type = FilePickerFileType.All,
+        type = FilePickerFileType.Pdf,
         selectionMode = FilePickerSelectionMode.Single,
         onResult = { files ->
-            files.firstOrNull()?.let { file ->
-                // Do something with the selected file
-                // You can get the ByteArray of the file
-                file.readByteArray()
-            }
-        }
-    )
-
-    suspend fun performAction() {
-        permissionHandler?.requestReadStoragePermission { isGranted ->
-            if (isGranted) {
-                println("Permission has been Granted:::::::")
+            println("File loading executed:::::::::;")
+            if (files.isNotEmpty()) {
+                files.firstOrNull()?.let { file ->
+                    // Do something with the selected file
+                    // You can get the ByteArray of the file
+                    if (file.name?.isNotEmpty() == true){
+                        file.name
+                    }
+                    println("Loaded Data: ${file.name}")
+                }
             } else {
-                println("Permission has been Denied:::::::")
-
+                // Handle the case when no file is selected or an issue occurred
+                println("Error: File not loaded or issue with file loading.")
             }
-        }
+        })
+
+    var showFilePicker by remember { mutableStateOf(false) }
+    val fileType = listOf("jpg", "png", "pdf","*/*")
+    FilePicker(show = showFilePicker, fileExtensions = fileType) { file ->
+        println("Files loaded;;;;;;;;;;;;;::::" + file.toString())
+        showFilePicker = false
+        // do something with the file
+
+
+
     }
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -115,23 +129,32 @@ fun MessageContent(
                 //open local storage and load the image
                 FilledTonalButtonExample(
                     onClick = {
-                        //pickerLauncher.launch()
-                        coroutineScope.launch {
-                            // Request the permission
-                            permissionHandler?.requestReadStoragePermission { isGranted ->
-                                // Handle the result
-                                if (isGranted) {
-                                    println("Permission has been Granted:::::::")
-                                } else {
-                                    println("Permission has been Denied:::::::")
-                                }
-                            }
-                        }
+                       // showFilePicker = true
+                        pickerLauncher.launch()
+//                        coroutineScope.launch {
+//                            // Request the permission
+//                            permissionHandler?.requestReadStoragePermission { isGranted ->
+//                                // Handle the result
+//                                if (isGranted) {
+//                                    println("Permission has been Granted:::::::")
+//                                } else {
+//                                    println("Permission has been Denied:::::::")
+//                                }
+//                            }
+//                        }
 
                     },
                     label = " Pick Up "
                 )
             }
+            Image(
+                painter = painterResource("image 8.png"),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxWidth()
+            )
         }
     }
 }
+
+

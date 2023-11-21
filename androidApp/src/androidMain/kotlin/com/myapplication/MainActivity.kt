@@ -11,11 +11,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val root = DefaultRootBottomComponent(
-                componentContext = defaultComponentContext(),
-            )
+            componentContext = defaultComponentContext(),
+        )
 
         setContent {
             MainView(root)
         }
+
     }
 }
