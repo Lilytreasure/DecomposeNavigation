@@ -20,16 +20,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.darkrockstudios.libraries.mpfilepicker.FilePicker
 import com.mohamedrejeb.calf.io.name
 import com.mohamedrejeb.calf.picker.FilePickerFileType
 import com.mohamedrejeb.calf.picker.FilePickerSelectionMode
@@ -46,8 +41,8 @@ fun MessageContent(
 ) {
     val coroutineScope = rememberCoroutineScope()
 
-    val pickerLauncher = rememberFilePickerLauncher(
-        type = FilePickerFileType.Pdf,
+    val imagePickerLauncher = rememberFilePickerLauncher(
+        type = FilePickerFileType.Image,
         selectionMode = FilePickerSelectionMode.Single,
         onResult = { files ->
             println("File loading executed:::::::::;")
@@ -55,7 +50,7 @@ fun MessageContent(
                 files.firstOrNull()?.let { file ->
                     // Do something with the selected file
                     // You can get the ByteArray of the file
-                    if (file.name?.isNotEmpty() == true){
+                    if (file.name?.isNotEmpty() == true) {
                         file.name
                     }
                     println("Loaded Data: ${file.name}")
@@ -66,16 +61,36 @@ fun MessageContent(
             }
         })
 
-    var showFilePicker by remember { mutableStateOf(false) }
-    val fileType = listOf("jpg", "png", "pdf","*/*")
-    FilePicker(show = showFilePicker, fileExtensions = fileType) { file ->
-        println("Files loaded;;;;;;;;;;;;;::::" + file.toString())
-        showFilePicker = false
-        // do something with the file
+    val pdfPickerLauncher = rememberFilePickerLauncher(
+        type = FilePickerFileType.Pdf,
+        selectionMode = FilePickerSelectionMode.Single,
+        onResult = { files ->
+            println("File loading executed:::::::::;")
+            if (files.isNotEmpty()) {
+                files.firstOrNull()?.let { file ->
+                    // Do something with the selected file
+                    // You can get the ByteArray of the file
+                    if (file.name?.isNotEmpty() == true) {
+                        file.name
+                    }
+                    println("Loaded Data: ${file.name}")
+                }
+            } else {
+                // Handle the case when no file is selected or an issue occurred
+                println("Error: File not loaded or issue with file loading.")
+            }
+        })
 
-
-
-    }
+//    var showFilePicker by remember { mutableStateOf(false) }
+//    val fileType = listOf("jpg", "png", "pdf","*/*")
+//    FilePicker(show = showFilePicker, fileExtensions = fileType) { file ->
+//        println("Files loaded;;;;;;;;;;;;;::::" + file.toString())
+//        showFilePicker = false
+//        // do something with the file
+//
+//
+//
+//    }
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -123,14 +138,19 @@ fun MessageContent(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 FilledTonalButtonExample(
-                    onClick = {},
+                    onClick = {
+                        //load the pdf
+                        pdfPickerLauncher.launch()
+
+
+                    },
                     label = " Deliver "
                 )
                 //open local storage and load the image
                 FilledTonalButtonExample(
                     onClick = {
-                       // showFilePicker = true
-                        pickerLauncher.launch()
+                        // showFilePicker = true
+                        imagePickerLauncher.launch()
 //                        coroutineScope.launch {
 //                            // Request the permission
 //                            permissionHandler?.requestReadStoragePermission { isGranted ->
