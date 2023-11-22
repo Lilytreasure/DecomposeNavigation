@@ -48,7 +48,26 @@ kotlin {
                 api("com.mohamedrejeb.calf:calf-ui:0.2.0")
                 implementation("com.mohamedrejeb.calf:calf-file-picker:0.2.0")
                 implementation("com.darkrockstudios:mpfilepicker:3.0.0")
+                //permissions
+                api("dev.icerock.moko:media:0.11.0")
 
+                // Compose Multiplatform
+                api("dev.icerock.moko:media-compose:0.11.0")
+
+                implementation("dev.icerock.moko:media-test:0.11.0")
+                //file permisssions access
+                api("dev.icerock.moko:permissions:0.16.0")
+                // compose multiplatform
+                api("dev.icerock.moko:permissions-compose:0.16.0") // permissions api + compose extensions
+                implementation("dev.icerock.moko:permissions-test:0.16.0")
+                // Biometric
+                api("dev.icerock.moko:biometry:0.4.0")
+
+                // Compose Multiplatform
+                api("dev.icerock.moko:biometry-compose:0.4.0")
+
+                // Jetpack Compose (only for android, if you don't use multiplatform)
+                implementation("dev.icerock.moko:biometry-compose:0.4.0")
             }
         }
         val androidMain by getting {

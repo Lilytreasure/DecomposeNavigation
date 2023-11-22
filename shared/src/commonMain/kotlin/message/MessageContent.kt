@@ -1,6 +1,5 @@
 package message
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,18 +19,22 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.mohamedrejeb.calf.io.name
 import com.mohamedrejeb.calf.picker.FilePickerFileType
 import com.mohamedrejeb.calf.picker.FilePickerSelectionMode
 import com.mohamedrejeb.calf.picker.rememberFilePickerLauncher
+import dev.icerock.moko.permissions.PermissionsController
+import dev.icerock.moko.permissions.compose.PermissionsControllerFactory
+import dev.icerock.moko.permissions.compose.rememberPermissionsControllerFactory
 import feeds.FilledTonalButtonExample
+import kotlinx.coroutines.CoroutineScope
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
+import uiComponents.SampleAccess
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalResourceApi::class)
 @Composable
@@ -39,8 +42,11 @@ fun MessageContent(
     component: MessageComponent,
     modifier: Modifier = Modifier,
 ) {
-    val coroutineScope = rememberCoroutineScope()
 
+    val factory: PermissionsControllerFactory = rememberPermissionsControllerFactory()
+    val controller: PermissionsController = remember(factory) { factory.createPermissionsController() }
+    val coroutineScopePermission: CoroutineScope = rememberCoroutineScope()
+    val coroutineScope = rememberCoroutineScope()
     val imagePickerLauncher = rememberFilePickerLauncher(
         type = FilePickerFileType.Image,
         selectionMode = FilePickerSelectionMode.Single,
@@ -62,7 +68,7 @@ fun MessageContent(
         })
 
     val pdfPickerLauncher = rememberFilePickerLauncher(
-        type = FilePickerFileType.Pdf,
+        type = FilePickerFileType.All,
         selectionMode = FilePickerSelectionMode.Single,
         onResult = { files ->
             println("File loading executed:::::::::;")
@@ -146,8 +152,15 @@ fun MessageContent(
                 //open local storage and load the image
                 FilledTonalButtonExample(
                     onClick = {
+
+//                        coroutineScope.launch {
+//                            controller.providePermission(Permission.STORAGE)
+//                            //controller.isPermissionGranted(Permission.STORAGE)
+//                            println("The state of Permission +::::::::::;;"+   controller.isPermissionGranted(Permission.STORAGE).toString())
+//                        }
+                        pdfPickerLauncher.launch()
                         // showFilePicker = true
-                        imagePickerLauncher.launch()
+                       // imagePickerLauncher.launch()
 //                        coroutineScope.launch {
 //                            // Request the permission
 //                            permissionHandler?.requestReadStoragePermission { isGranted ->
@@ -164,12 +177,11 @@ fun MessageContent(
                     label = " Pick Up "
                 )
             }
-            Image(
-                painter = painterResource("image 8.png"),
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxWidth()
-            )
+
+            //image preview
+            //Sample()
+            SampleAccess()
+
         }
     }
 }
