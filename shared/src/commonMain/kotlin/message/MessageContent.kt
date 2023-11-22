@@ -34,7 +34,7 @@ import dev.icerock.moko.permissions.compose.rememberPermissionsControllerFactory
 import feeds.FilledTonalButtonExample
 import kotlinx.coroutines.CoroutineScope
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import uiComponents.SampleAccess
+import uiComponents.Sample
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalResourceApi::class)
 @Composable
@@ -179,8 +179,8 @@ fun MessageContent(
             }
 
             //image preview
-            //Sample()
-            SampleAccess()
+            Sample()
+           // SampleAccess()
 
         }
     }
