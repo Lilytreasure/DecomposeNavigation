@@ -32,6 +32,7 @@ fun Sample() {
     val controller: PermissionsController = remember(factoryPermission) { factoryPermission.createPermissionsController() }
     val coroutineScopePermission: CoroutineScope = rememberCoroutineScope()
     var image: ImageBitmap? by remember { mutableStateOf(null) }
+    var image2: ImageBitmap? by remember { mutableStateOf(null) }
 
     val coroutineScope2 = CoroutineScope(Dispatchers.IO)
     //new
@@ -62,10 +63,12 @@ fun Sample() {
             coroutineScope.launch {
                 try {
                     picker.permissionsController.providePermission(Permission.CAMERA)
-
                     if (picker.permissionsController.isPermissionGranted(Permission.CAMERA)) {
                         image = picker.pickImage(MediaSource.CAMERA).toImageBitmap()
+                        image2 = picker.pickImage(MediaSource.CAMERA).toImageBitmap()
+
                         // Process the image or perform other tasks
+                        println("Captured Camera Image::::::" +image2)
                     }
                 } catch (ex: dev.icerock.moko.media.picker.CanceledException) {
                     // Handle media picking cancellation here

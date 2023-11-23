@@ -17,6 +17,5 @@ class MainActivity : AppCompatActivity() {
         setContent {
             MainView(root)
         }
-
     }
 }

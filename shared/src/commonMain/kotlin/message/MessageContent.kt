@@ -32,6 +32,7 @@ import com.mohamedrejeb.calf.io.name
 import com.mohamedrejeb.calf.picker.FilePickerFileType
 import com.mohamedrejeb.calf.picker.FilePickerSelectionMode
 import com.mohamedrejeb.calf.picker.rememberFilePickerLauncher
+import dev.icerock.moko.media.compose.rememberMediaPickerControllerFactory
 import dev.icerock.moko.permissions.PermissionsController
 import dev.icerock.moko.permissions.compose.PermissionsControllerFactory
 import dev.icerock.moko.permissions.compose.rememberPermissionsControllerFactory
@@ -48,9 +49,14 @@ fun MessageContent(
     component: MessageComponent,
     modifier: Modifier = Modifier,
 ) {
+    val mediaFactory = rememberMediaPickerControllerFactory()
+    val picker = remember(mediaFactory) {
+        mediaFactory.createMediaPickerController()
+    }
 
     val factory: PermissionsControllerFactory = rememberPermissionsControllerFactory()
-    val controller: PermissionsController = remember(factory) { factory.createPermissionsController() }
+    val controller: PermissionsController =
+        remember(factory) { factory.createPermissionsController() }
     val coroutineScopePermission: CoroutineScope = rememberCoroutineScope()
     val coroutineScope = rememberCoroutineScope()
     val imagePickerLauncher = rememberFilePickerLauncher(
@@ -82,25 +88,34 @@ fun MessageContent(
                 files.firstOrNull()?.let { file ->
                     // Do something with the selected file
                     // You can get the ByteArray of the file
-                    if (file.name?.isNotEmpty() == true) {
-                        file.name
+                    try {
+                        if (file.name?.isNotEmpty() == true) {
+                            // Extracted file name
+                            val fileName = file.name
+                            println("Loaded Data: $fileName")
+                        } else {
+                            println("Error: File name is empty.")
+                        }
+                    } catch (e: NumberFormatException) {
+                        // Handle the NumberFormatException appropriately
+                        println("Error: Failed to parse file name as a number.")
+                        e.printStackTrace()
                     }
-                    println("Loaded Data: ${file.name}")
                 }
             } else {
                 // Handle the case when no file is selected or an issue occurred
                 println("Error: File not loaded or issue with file loading.")
             }
-        })
+        }
+    )
 
     var showFilePicker by remember { mutableStateOf(false) }
-    val fileType = listOf("jpg", "png", "pdf","*/*")
+    val fileType = listOf("jpg", "png", "pdf", "*/*")
     FilePicker(show = showFilePicker, fileExtensions = fileType) { file ->
         println("Files loaded;;;;;;;;;;;;;::::" + file.toString())
 
         showFilePicker = false
         // do something with the file
-
 
 
     }
@@ -153,7 +168,7 @@ fun MessageContent(
                     onClick = {
                         //load the pdf
                         //pdfPickerLauncher.launch()
-                              //imagePickerLauncher.launch()
+                        //imagePickerLauncher.launch()
                         coroutineScope.launch {
                             imagePickerLauncher.launch()
                             this.cancel()
@@ -172,8 +187,8 @@ fun MessageContent(
 //                            println("The state of Permission +::::::::::;;"+   controller.isPermissionGranted(Permission.STORAGE).toString())
 //                        }
                         pdfPickerLauncher.launch()
-                      //  showFilePicker = true
-                       // imagePickerLauncher.launch()
+                        //  showFilePicker = true
+                        // imagePickerLauncher.launch()
 //                        coroutineScope.launch {
 //                            // Request the permission
 //                            permissionHandler?.requestReadStoragePermission { isGranted ->
@@ -193,7 +208,7 @@ fun MessageContent(
 
             //image preview
             Sample()
-           // SampleAccess()
+            // SampleAccess()
 
         }
     }
