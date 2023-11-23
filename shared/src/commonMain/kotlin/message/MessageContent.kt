@@ -19,11 +19,15 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.darkrockstudios.libraries.mpfilepicker.FilePicker
 import com.mohamedrejeb.calf.io.name
 import com.mohamedrejeb.calf.picker.FilePickerFileType
 import com.mohamedrejeb.calf.picker.FilePickerSelectionMode
@@ -33,6 +37,8 @@ import dev.icerock.moko.permissions.compose.PermissionsControllerFactory
 import dev.icerock.moko.permissions.compose.rememberPermissionsControllerFactory
 import feeds.FilledTonalButtonExample
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import uiComponents.Sample
 
@@ -87,16 +93,17 @@ fun MessageContent(
             }
         })
 
-//    var showFilePicker by remember { mutableStateOf(false) }
-//    val fileType = listOf("jpg", "png", "pdf","*/*")
-//    FilePicker(show = showFilePicker, fileExtensions = fileType) { file ->
-//        println("Files loaded;;;;;;;;;;;;;::::" + file.toString())
-//        showFilePicker = false
-//        // do something with the file
-//
-//
-//
-//    }
+    var showFilePicker by remember { mutableStateOf(false) }
+    val fileType = listOf("jpg", "png", "pdf","*/*")
+    FilePicker(show = showFilePicker, fileExtensions = fileType) { file ->
+        println("Files loaded;;;;;;;;;;;;;::::" + file.toString())
+
+        showFilePicker = false
+        // do something with the file
+
+
+
+    }
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -145,7 +152,13 @@ fun MessageContent(
                 FilledTonalButtonExample(
                     onClick = {
                         //load the pdf
-                        pdfPickerLauncher.launch()
+                        //pdfPickerLauncher.launch()
+                              //imagePickerLauncher.launch()
+                        coroutineScope.launch {
+                            imagePickerLauncher.launch()
+                            this.cancel()
+                        }
+
                     },
                     label = " Deliver "
                 )
@@ -159,7 +172,7 @@ fun MessageContent(
 //                            println("The state of Permission +::::::::::;;"+   controller.isPermissionGranted(Permission.STORAGE).toString())
 //                        }
                         pdfPickerLauncher.launch()
-                        // showFilePicker = true
+                      //  showFilePicker = true
                        // imagePickerLauncher.launch()
 //                        coroutineScope.launch {
 //                            // Request the permission
