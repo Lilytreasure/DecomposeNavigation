@@ -13,6 +13,7 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
     private val PICK_PDF_FILE = 2
     private val PICK_FILE_REQUEST_CODE = 123
     private val currentActivity: AppCompatActivity = (context as AppCompatActivity)
+    //private lateinit var filePickerLauncher: ActivityResultLauncher<Intent>
 
     //private var createFileLauncher: ActivityResultLauncher<Intent>
 
@@ -24,20 +25,21 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
 //            }
 //    }
 
-    private fun openFile(initialUri: Uri? = null) {
-        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-            addCategory(Intent.CATEGORY_OPENABLE)
-            type = "*/*"
-            putExtra(DocumentsContract.EXTRA_INITIAL_URI, initialUri)
-        }
-
-        // Use registerForActivityResult to obtain a launcher
-        val filePickerLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+//    private fun openFile(initialUri: Uri? = null) {
+//        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+//            addCategory(Intent.CATEGORY_OPENABLE)
+//            type = "*/*"
+//            putExtra(DocumentsContract.EXTRA_INITIAL_URI, initialUri)
+//        }
+//
+//        // Use registerForActivityResult to obtain a launcher
+        val filePickerLauncher = currentActivity.registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             handleFileSelectionResult(result.resultCode, result.data?.data)
         }
+//
+//       currentActivity.startActivityForResult(intent,123)
+//    }
 
-       currentActivity.startActivityForResult(intent,123)
-    }
 
     actual fun loadData() {
 //        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
@@ -48,8 +50,14 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
         // Start the activity for result using the ActivityResultLauncher
         //createFileLauncher.launch(intent)
         //startActivity(intent)
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+            addCategory(Intent.CATEGORY_OPENABLE)
+            type = "application/pdf"
+            putExtra(DocumentsContract.EXTRA_INITIAL_URI, "")
+        }
+        filePickerLauncher.launch(intent)
 
-        openFile()
+
     }
 
 //    private fun handleFileSelectionResult(resultCode: Int, selectedFileUri: Uri?) {
@@ -81,6 +89,16 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
             println("Error opening")
 
         }
+    }
+
+    fun openFile(pickerInitialUri: Uri) {
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+            addCategory(Intent.CATEGORY_OPENABLE)
+            type = "application/pdf"
+            putExtra(DocumentsContract.EXTRA_INITIAL_URI, pickerInitialUri)
+        }
+
+        filePickerLauncher.launch(intent)
     }
 
     private fun getFileName(uri: Uri): String {
