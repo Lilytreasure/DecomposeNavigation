@@ -37,4 +37,6 @@ actual class PermissionHandler(private val activity: ComponentActivity) {
         // Reset the callback to null
         callback = null
     }
+
+
 }
