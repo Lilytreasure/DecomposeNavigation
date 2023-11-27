@@ -68,6 +68,12 @@ kotlin {
 
                 // Jetpack Compose (only for android, if you don't use multiplatform)
                 implementation("dev.icerock.moko:biometry-compose:0.4.0")
+
+                // Koin
+                with(deps.koin) {
+                    api(core)
+                    api(test)
+                }
             }
         }
         val androidMain by getting {

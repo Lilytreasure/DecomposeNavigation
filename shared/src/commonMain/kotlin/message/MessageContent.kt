@@ -38,8 +38,6 @@ import dev.icerock.moko.permissions.compose.PermissionsControllerFactory
 import dev.icerock.moko.permissions.compose.rememberPermissionsControllerFactory
 import feeds.FilledTonalButtonExample
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import uiComponents.Sample
 
@@ -49,6 +47,7 @@ fun MessageContent(
     component: MessageComponent,
     modifier: Modifier = Modifier,
 ) {
+
     val mediaFactory = rememberMediaPickerControllerFactory()
     val picker = remember(mediaFactory) {
         mediaFactory.createMediaPickerController()
@@ -169,10 +168,11 @@ fun MessageContent(
                         //load the pdf
                         //pdfPickerLauncher.launch()
                         //imagePickerLauncher.launch()
-                        coroutineScope.launch {
-                            imagePickerLauncher.launch()
-                            this.cancel()
-                        }
+//                        coroutineScope.launch {
+//                            imagePickerLauncher.launch()
+//                            this.cancel()
+//                        }
+                        component.loadFiles.loadData()
 
                     },
                     label = " Deliver "

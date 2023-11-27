@@ -12,6 +12,9 @@ kotlin {
                 implementation(project(":shared"))
                 //added decompose in android  gradle
                 implementation(deps.decompose)
+                with(deps.koin) {
+                    api(android)
+                }
             }
         }
     }

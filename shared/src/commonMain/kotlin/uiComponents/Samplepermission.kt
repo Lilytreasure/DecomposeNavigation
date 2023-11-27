@@ -18,9 +18,10 @@ import dev.icerock.moko.permissions.Permission
 import dev.icerock.moko.permissions.PermissionsController
 import dev.icerock.moko.permissions.compose.PermissionsControllerFactory
 import dev.icerock.moko.permissions.compose.rememberPermissionsControllerFactory
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
 @Composable
@@ -33,8 +34,9 @@ fun Sample() {
     val coroutineScopePermission: CoroutineScope = rememberCoroutineScope()
     var image: ImageBitmap? by remember { mutableStateOf(null) }
     var image2: ImageBitmap? by remember { mutableStateOf(null) }
+    val cancellationException = CancellationException("Optional message describing the cancellation reason")
 
-    val coroutineScope2 = CoroutineScope(Dispatchers.IO)
+    val coroutineScope2 = CoroutineScope(Dispatchers.Main)
     //new
     val mediaFactory = rememberMediaPickerControllerFactory()
     val picker = remember(mediaFactory) {
@@ -59,7 +61,7 @@ fun Sample() {
 //                    println("Coroutine is canceled: ${ex.message}")
 //                }
 //            }
-
+//
             coroutineScope.launch {
                 try {
                     picker.permissionsController.providePermission(Permission.CAMERA)
@@ -77,15 +79,19 @@ fun Sample() {
                     // Handle other exceptions if needed
                     println("An unexpected error occurred: ${ex.message}")
                 }
+                this.cancel()
             }
 
 //            coroutineScope.launch {
-//                picker.permissionsController.providePermission(Permission.CAMERA)
-//                if (picker.permissionsController.isPermissionGranted(Permission.CAMERA)) {
-//                    image = picker.pickImage(MediaSource.CAMERA).toImageBitmap()
-//                    //coroutineScope.cancel()
+//                this.let {
+//                    picker.permissionsController.providePermission(Permission.CAMERA)
+//                    if (picker.permissionsController.isPermissionGranted(Permission.CAMERA)) {
+//                        image = picker.pickImage(MediaSource.CAMERA).toImageBitmap()
+//                        println("Captured Camera Image::::::" +image)
+//                        //coroutineScope.cancel()
+//                    }
 //                }
-//
+//                this.cancel()
 //            }
 //            coroutineScope.launch {
 //                    val result = picker.pickImage(MediaSource.GALLERY)
