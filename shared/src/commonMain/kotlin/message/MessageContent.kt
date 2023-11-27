@@ -172,6 +172,7 @@ fun MessageContent(
 //                            imagePickerLauncher.launch()
 //                            this.cancel()
 //                        }
+                        //collect a stream of data
                         component.loadFiles.loadData()
 
                     },

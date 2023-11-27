@@ -1,6 +1,6 @@
 package platform
 
-actual open class  LoadFiles(){
+actual open class  PlatformSpecific{
     actual fun loadData() {
     }
 

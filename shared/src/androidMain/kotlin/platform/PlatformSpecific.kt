@@ -9,7 +9,7 @@ import android.provider.OpenableColumns
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 
-actual open class LoadFiles(private val context: Context) : AppCompatActivity() {
+actual open class PlatformSpecific(private val context: Context) : AppCompatActivity() {
     private val PICK_PDF_FILE = 2
     private val PICK_FILE_REQUEST_CODE = 123
     private val currentActivity: AppCompatActivity = (context as AppCompatActivity)

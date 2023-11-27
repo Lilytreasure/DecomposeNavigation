@@ -9,14 +9,14 @@ import di.initKoin
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.stopKoin
 import org.koin.core.error.KoinAppAlreadyStartedException
-import platform.LoadFiles
+import platform.PlatformSpecific
 import rootBottomStack.DefaultRootBottomComponent
 
 class MainActivity : AppCompatActivity() {
-    private var platform: LoadFiles? = null
+    private var platform: PlatformSpecific? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        platform = LoadFiles(this)
+        platform = PlatformSpecific(this)
         val root = DefaultRootBottomComponent(
             componentContext = defaultComponentContext(),
         )

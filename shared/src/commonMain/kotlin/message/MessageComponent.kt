@@ -1,9 +1,9 @@
 package message
 
-import platform.LoadFiles
+import platform.PlatformSpecific
 
 interface MessageComponent {
-    val loadFiles: LoadFiles
+    val loadFiles: PlatformSpecific
 
     fun onUpdateGreetingText()
     fun onBackClicked()

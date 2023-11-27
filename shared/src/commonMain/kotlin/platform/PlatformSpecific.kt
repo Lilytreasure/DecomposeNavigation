@@ -1,6 +1,6 @@
 package platform
 
-expect open class LoadFiles{
+expect open class PlatformSpecific{
     fun loadData()
 
 }
