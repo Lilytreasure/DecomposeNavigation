@@ -11,6 +11,8 @@ import android.provider.DocumentsContract
 import android.provider.OpenableColumns
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.atwa.filepicker.core.FilePicker
@@ -66,7 +68,7 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
             callback(name)
         }
     }
-    actual fun loadImages(callback: (String?) -> Unit) {
+    actual fun loadImages(callback: (ImageBitmap?) -> Unit) {
         if (ContextCompat.checkSelfPermission(
                 currentActivity,
                 Manifest.permission.CAMERA
@@ -83,16 +85,18 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
             )
         }
     }
-    private fun captureImage(callback: (String?) -> Unit) {
+    private fun captureImage(callback: (ImageBitmap?) -> Unit) {
         filePicker.captureCameraImage { meta ->
             val name: String? = meta?.name
             val sizeKb: Int? = meta?.sizeKb
             val file: File? = meta?.file
             val bitmap: Bitmap? = meta?.bitmap
+            val bitmapimage: ImageBitmap? = meta?.bitmap?.asImageBitmap()
+
             println("Picked Image:::$bitmap")
 
             // Invoke the callback with the captured image details
-            callback(name)
+            callback(bitmapimage)
         }
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

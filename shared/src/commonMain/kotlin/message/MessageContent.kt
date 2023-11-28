@@ -1,5 +1,6 @@
 package message
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,6 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -26,6 +28,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.unit.dp
 import com.darkrockstudios.libraries.mpfilepicker.FilePicker
 import com.mohamedrejeb.calf.io.name
@@ -52,6 +55,7 @@ fun MessageContent(
     val picker = remember(mediaFactory) {
         mediaFactory.createMediaPickerController()
     }
+    var mutableBitmapState: MutableState<ImageBitmap?> = mutableStateOf(null)
 
     val factory: PermissionsControllerFactory = rememberPermissionsControllerFactory()
     val controller: PermissionsController =
@@ -178,6 +182,7 @@ fun MessageContent(
 //                        }
                         component.loadFiles.loadImages {image->
                             println("Loaded camera image + " + image)
+                            mutableBitmapState.value=image
                         }
 
                     },
@@ -215,7 +220,12 @@ fun MessageContent(
             //image preview
             Sample()
             // SampleAccess()
+            mutableBitmapState.value.let {
+                if (it != null) {
+                    Image(bitmap = it, contentDescription = null)
+                }
 
+            }
         }
     }
 }
