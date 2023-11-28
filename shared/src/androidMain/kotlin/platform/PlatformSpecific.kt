@@ -8,11 +8,14 @@ import android.provider.DocumentsContract
 import android.provider.OpenableColumns
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.atwa.filepicker.core.FilePicker
+import java.io.File
 
 actual open class PlatformSpecific(private val context: Context) : AppCompatActivity() {
     private val PICK_PDF_FILE = 2
     private val PICK_FILE_REQUEST_CODE = 123
     private val currentActivity: AppCompatActivity = (context as AppCompatActivity)
+    private val filePicker = FilePicker.getInstance(currentActivity)
     //private lateinit var filePickerLauncher: ActivityResultLauncher<Intent>
 
     //private var createFileLauncher: ActivityResultLauncher<Intent>
@@ -25,7 +28,7 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
 //            }
 //    }
 
-//    private fun openFile(initialUri: Uri? = null) {
+    //    private fun openFile(initialUri: Uri? = null) {
 //        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
 //            addCategory(Intent.CATEGORY_OPENABLE)
 //            type = "*/*"
@@ -33,7 +36,8 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
 //        }
 //
 //        // Use registerForActivityResult to obtain a launcher
-        val filePickerLauncher = currentActivity.registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+    val filePickerLauncher =
+        currentActivity.registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             handleFileSelectionResult(result.resultCode, result.data?.data)
         }
 //
@@ -41,23 +45,20 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
 //    }
 
 
-    actual fun loadData() {
-//        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-//            addCategory(Intent.CATEGORY_OPENABLE)
-//            type = "*/*" // Specify the MIME type of the files you want to allow (e.g., "application/pdf")
-//        }
+    actual fun loadData(callback: (String?) -> Unit) {
+        // Use the file picker to pick a PDF file
+        filePicker.pickPdf { meta ->
+            // Get the selected file name
+            val name = meta?.name
 
-        // Start the activity for result using the ActivityResultLauncher
-        //createFileLauncher.launch(intent)
-        //startActivity(intent)
-        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-            addCategory(Intent.CATEGORY_OPENABLE)
-            type = "application/pdf"
-            putExtra(DocumentsContract.EXTRA_INITIAL_URI, "")
+            // Perform other actions with the file metadata if needed
+            val sizeKb: Int? = meta?.sizeKb
+            val file: File? = meta?.file
+            println("Loaded File name: $name")
+
+            // Invoke the callback with the selected file name
+            callback(name)
         }
-        filePickerLauncher.launch(intent)
-
-
     }
 
 //    private fun handleFileSelectionResult(resultCode: Int, selectedFileUri: Uri?) {
@@ -84,7 +85,7 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
                 // Print or use the file name as needed
                 println("Selected file name: $fileName")
             }
-        }else{
+        } else {
 
             println("Error opening")
 
@@ -101,6 +102,15 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
         filePickerLauncher.launch(intent)
     }
 
+    private fun pickPdf() {
+        filePicker.pickPdf() { meta ->
+            val name: String? = meta?.name
+            val sizeKb: Int? = meta?.sizeKb
+            val file: File? = meta?.file
+            println("Loaded File name:::::" + name)
+        }
+    }
+
     private fun getFileName(uri: Uri): String {
         contentResolver.query(uri, null, null, null, null)?.use { cursor ->
             val nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
@@ -109,6 +119,7 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
         }
         return ""
     }
+
     private fun handleFileSelectionResult(resultCode: Int, selectedFileUri: Uri?) {
         if (resultCode == Activity.RESULT_OK) {
             selectedFileUri?.let { uri ->

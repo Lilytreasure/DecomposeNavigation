@@ -173,7 +173,9 @@ fun MessageContent(
 //                            this.cancel()
 //                        }
                         //collect a stream of data
-                        component.loadFiles.loadData()
+                        component.loadFiles.loadData{loaded->
+                            println("Loaded Passed Value" + loaded)
+                        }
 
                     },
                     label = " Deliver "
