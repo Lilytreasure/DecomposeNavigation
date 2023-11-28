@@ -25,34 +25,10 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
     private val filePicker = FilePicker.getInstance(currentActivity)
     //private lateinit var filePickerLauncher: ActivityResultLauncher<Intent>
     private val CAMERA_PERMISSION_REQUEST_CODE = 123
-
-    //private var createFileLauncher: ActivityResultLauncher<Intent>
-
-//    init {
-//        // Initialize the ActivityResultLauncher in the init block
-//        createFileLauncher =
-//            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-//                handleFileSelectionResult(result.resultCode, result.data?.data)
-//            }
-//    }
-
-    //    private fun openFile(initialUri: Uri? = null) {
-//        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-//            addCategory(Intent.CATEGORY_OPENABLE)
-//            type = "*/*"
-//            putExtra(DocumentsContract.EXTRA_INITIAL_URI, initialUri)
-//        }
-//
-//        // Use registerForActivityResult to obtain a launcher
     val filePickerLauncher =
         currentActivity.registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             handleFileSelectionResult(result.resultCode, result.data?.data)
         }
-//
-//       currentActivity.startActivityForResult(intent,123)
-//    }
-
-
     actual fun loadFiles(callback: (String?) -> Unit) {
         // Use the file picker to pick a PDF file
         filePicker.pickPdf { meta ->
@@ -158,6 +134,5 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
             println("Error opening or user canceled")
         }
     }
-
 
 }
