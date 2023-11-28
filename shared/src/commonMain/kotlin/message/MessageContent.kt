@@ -173,8 +173,11 @@ fun MessageContent(
 //                            this.cancel()
 //                        }
                         //collect a stream of data
-                        component.loadFiles.loadData{loaded->
-                            println("Loaded Passed Value" + loaded)
+//                        component.loadFiles.loadFiles{ loaded->
+//                            println("Loaded Passed Value" + loaded)
+//                        }
+                        component.loadFiles.loadImages {image->
+                            println("Loaded camera image + " + image)
                         }
 
                     },

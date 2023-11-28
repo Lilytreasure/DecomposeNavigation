@@ -1,13 +1,18 @@
 package platform
 
+import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.Uri
 import android.provider.DocumentsContract
 import android.provider.OpenableColumns
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.atwa.filepicker.core.FilePicker
 import java.io.File
 
@@ -17,6 +22,7 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
     private val currentActivity: AppCompatActivity = (context as AppCompatActivity)
     private val filePicker = FilePicker.getInstance(currentActivity)
     //private lateinit var filePickerLauncher: ActivityResultLauncher<Intent>
+    private val CAMERA_PERMISSION_REQUEST_CODE = 123
 
     //private var createFileLauncher: ActivityResultLauncher<Intent>
 
@@ -45,7 +51,7 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
 //    }
 
 
-    actual fun loadData(callback: (String?) -> Unit) {
+    actual fun loadFiles(callback: (String?) -> Unit) {
         // Use the file picker to pick a PDF file
         filePicker.pickPdf { meta ->
             // Get the selected file name
@@ -60,20 +66,35 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
             callback(name)
         }
     }
+    actual fun loadImages(callback: (String?) -> Unit) {
+        if (ContextCompat.checkSelfPermission(
+                currentActivity,
+                Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            // Permission is already granted, proceed with capturing the image
+            captureImage(callback)
+        } else {
+            // Request camera permission
+            ActivityCompat.requestPermissions(
+                currentActivity,
+                arrayOf(Manifest.permission.CAMERA),
+                CAMERA_PERMISSION_REQUEST_CODE
+            )
+        }
+    }
+    private fun captureImage(callback: (String?) -> Unit) {
+        filePicker.captureCameraImage { meta ->
+            val name: String? = meta?.name
+            val sizeKb: Int? = meta?.sizeKb
+            val file: File? = meta?.file
+            val bitmap: Bitmap? = meta?.bitmap
+            println("Picked Image:::$bitmap")
 
-//    private fun handleFileSelectionResult(resultCode: Int, selectedFileUri: Uri?) {
-//        if (resultCode == AppCompatActivity.RESULT_OK) {
-//            // Handle the result, for example, you can get the selected file URI
-//            if (selectedFileUri != null) {
-//                println("File loaded: $selectedFileUri")
-//                // Process the selected file URI as needed
-//            }
-//        } else {
-//            // The user canceled or encountered an error
-//            println("File selection canceled or encountered an error")
-//        }
-//    }
-
+            // Invoke the callback with the captured image details
+            callback(name)
+        }
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -133,4 +154,6 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
             println("Error opening or user canceled")
         }
     }
+
+
 }
