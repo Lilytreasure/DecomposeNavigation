@@ -23,25 +23,29 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
     private val PICK_FILE_REQUEST_CODE = 123
     private val currentActivity: AppCompatActivity = (context as AppCompatActivity)
     private val filePicker = FilePicker.getInstance(currentActivity)
+
     //private lateinit var filePickerLauncher: ActivityResultLauncher<Intent>
     private val CAMERA_PERMISSION_REQUEST_CODE = 123
     val filePickerLauncher =
         currentActivity.registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             handleFileSelectionResult(result.resultCode, result.data?.data)
         }
+
     actual fun loadFiles(callback: (String?) -> Unit) {
         // Use the file picker to pick a PDF file
-        filePicker.pickPdf { meta ->
-            // Get the selected file name
-            val name = meta?.name
+        if (ContextCompat.checkSelfPermission(
+                currentActivity,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            loadDeviceFiles()
+        }else{
+            ActivityCompat.requestPermissions(
+                currentActivity,
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                PICK_FILE_REQUEST_CODE
+            )
 
-            // Perform other actions with the file metadata if needed
-            val sizeKb: Int? = meta?.sizeKb
-            val file: File? = meta?.file
-            println("Loaded File name: $name")
-
-            // Invoke the callback with the selected file name
-            callback(name)
         }
     }
     actual fun loadImages(callback: (ImageBitmap?) -> Unit) {
@@ -61,6 +65,7 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
             )
         }
     }
+
     private fun captureImage(callback: (ImageBitmap?) -> Unit) {
         filePicker.captureCameraImage { meta ->
             val name: String? = meta?.name
@@ -75,6 +80,22 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
             callback(bitmapimage)
         }
     }
+
+    private fun loadDeviceFiles(){
+        filePicker.pickPdf { meta ->
+            // Get the selected file name
+            val name = meta?.name
+
+            // Perform other actions with the file metadata if needed
+            val sizeKb: Int? = meta?.sizeKb
+            val file: File? = meta?.file
+            println("Loaded File name;;;;;;;;: $name")
+
+            // Invoke the callback with the selected file name
+        }
+
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 

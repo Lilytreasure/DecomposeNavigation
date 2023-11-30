@@ -42,7 +42,6 @@ import dev.icerock.moko.permissions.compose.rememberPermissionsControllerFactory
 import feeds.FilledTonalButtonExample
 import kotlinx.coroutines.CoroutineScope
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import uiComponents.Sample
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalResourceApi::class)
 @Composable
@@ -50,13 +49,11 @@ fun MessageContent(
     component: MessageComponent,
     modifier: Modifier = Modifier,
 ) {
-
     val mediaFactory = rememberMediaPickerControllerFactory()
     val picker = remember(mediaFactory) {
         mediaFactory.createMediaPickerController()
     }
     var mutableBitmapState: MutableState<ImageBitmap?> = mutableStateOf(null)
-
     val factory: PermissionsControllerFactory = rememberPermissionsControllerFactory()
     val controller: PermissionsController =
         remember(factory) { factory.createPermissionsController() }
@@ -169,30 +166,47 @@ fun MessageContent(
             ) {
                 FilledTonalButtonExample(
                     onClick = {
+                        //Take photos
                         component.loadFiles.loadImages { image ->
                             println("Loaded camera image + " + image)
                             mutableBitmapState.value = image
                         }
 
                     },
-                    label = " Deliver "
+                    label = "Take photo "
                 )
                 //open local storage and load the image
+                mutableBitmapState.value.let {
+                    if (it != null) {
+                        Image(bitmap = it, contentDescription = null)
+                    }
+
+                }
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
                 FilledTonalButtonExample(
                     onClick = {
-                        pdfPickerLauncher.launch()
+                        //Take photos
+                        component.loadFiles.loadFiles { file ->
+                            println("Loaded files Data + " + file)
+                        }
+
+                    },
+                    label = " Deliver "
+                )
+                FilledTonalButtonExample(
+                    onClick = {
+                        component.loadFiles.loadFiles { it ->
+                            println("Loaded file" + it)
+                        }
                     },
                     label = " Pick Up "
                 )
             }
-            Sample()
-            // SampleAccess()
-            mutableBitmapState.value.let {
-                if (it != null) {
-                    Image(bitmap = it, contentDescription = null)
-                }
 
-            }
         }
     }
 }
