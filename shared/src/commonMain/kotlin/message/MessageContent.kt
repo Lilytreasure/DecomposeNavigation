@@ -169,20 +169,9 @@ fun MessageContent(
             ) {
                 FilledTonalButtonExample(
                     onClick = {
-                        //load the pdf
-                        //pdfPickerLauncher.launch()
-                        //imagePickerLauncher.launch()
-//                        coroutineScope.launch {
-//                            imagePickerLauncher.launch()
-//                            this.cancel()
-//                        }
-                        //collect a stream of data
-//                        component.loadFiles.loadFiles{ loaded->
-//                            println("Loaded Passed Value" + loaded)
-//                        }
-                        component.loadFiles.loadImages {image->
+                        component.loadFiles.loadImages { image ->
                             println("Loaded camera image + " + image)
-                            mutableBitmapState.value=image
+                            mutableBitmapState.value = image
                         }
 
                     },
@@ -191,33 +180,11 @@ fun MessageContent(
                 //open local storage and load the image
                 FilledTonalButtonExample(
                     onClick = {
-
-//                        coroutineScope.launch {
-//                            controller.providePermission(Permission.STORAGE)
-//                            //controller.isPermissionGranted(Permission.STORAGE)
-//                            println("The state of Permission +::::::::::;;"+   controller.isPermissionGranted(Permission.STORAGE).toString())
-//                        }
                         pdfPickerLauncher.launch()
-                        //  showFilePicker = true
-                        // imagePickerLauncher.launch()
-//                        coroutineScope.launch {
-//                            // Request the permission
-//                            permissionHandler?.requestReadStoragePermission { isGranted ->
-//                                // Handle the result
-//                                if (isGranted) {
-//                                    println("Permission has been Granted:::::::")
-//                                } else {
-//                                    println("Permission has been Denied:::::::")
-//                                }
-//                            }
-//                        }
-
                     },
                     label = " Pick Up "
                 )
             }
-
-            //image preview
             Sample()
             // SampleAccess()
             mutableBitmapState.value.let {
