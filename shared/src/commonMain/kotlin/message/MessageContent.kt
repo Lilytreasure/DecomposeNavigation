@@ -1,210 +1,296 @@
 package message
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.darkrockstudios.libraries.mpfilepicker.FilePicker
-import com.mohamedrejeb.calf.io.name
-import com.mohamedrejeb.calf.picker.FilePickerFileType
-import com.mohamedrejeb.calf.picker.FilePickerSelectionMode
-import com.mohamedrejeb.calf.picker.rememberFilePickerLauncher
-import dev.icerock.moko.media.compose.rememberMediaPickerControllerFactory
-import dev.icerock.moko.permissions.PermissionsController
-import dev.icerock.moko.permissions.compose.PermissionsControllerFactory
-import dev.icerock.moko.permissions.compose.rememberPermissionsControllerFactory
-import feeds.FilledTonalButtonExample
-import kotlinx.coroutines.CoroutineScope
+import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.painterResource
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalResourceApi::class)
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun MessageContent(
     component: MessageComponent,
     modifier: Modifier = Modifier,
 ) {
-    val mediaFactory = rememberMediaPickerControllerFactory()
-    val picker = remember(mediaFactory) {
-        mediaFactory.createMediaPickerController()
-    }
-    var mutableBitmapState: MutableState<ImageBitmap?> = mutableStateOf(null)
-    val factory: PermissionsControllerFactory = rememberPermissionsControllerFactory()
-    val controller: PermissionsController =
-        remember(factory) { factory.createPermissionsController() }
-    val coroutineScopePermission: CoroutineScope = rememberCoroutineScope()
-    val coroutineScope = rememberCoroutineScope()
-    val imagePickerLauncher = rememberFilePickerLauncher(
-        type = FilePickerFileType.Image,
-        selectionMode = FilePickerSelectionMode.Single,
-        onResult = { files ->
-            println("File loading executed:::::::::;")
-            if (files.isNotEmpty()) {
-                files.firstOrNull()?.let { file ->
-                    // Do something with the selected file
-                    // You can get the ByteArray of the file
-                    if (file.name?.isNotEmpty() == true) {
-                        file.name
-                    }
-                    println("Loaded Data: ${file.name}")
-                }
-            } else {
-                // Handle the case when no file is selected or an issue occurred
-                println("Error: File not loaded or issue with file loading.")
-            }
-        })
-
-    val pdfPickerLauncher = rememberFilePickerLauncher(
-        type = FilePickerFileType.All,
-        selectionMode = FilePickerSelectionMode.Single,
-        onResult = { files ->
-            println("File loading executed:::::::::;")
-            if (files.isNotEmpty()) {
-                files.firstOrNull()?.let { file ->
-                    // Do something with the selected file
-                    // You can get the ByteArray of the file
-                    try {
-                        if (file.name?.isNotEmpty() == true) {
-                            // Extracted file name
-                            val fileName = file.name
-                            println("Loaded Data: $fileName")
-                        } else {
-                            println("Error: File name is empty.")
-                        }
-                    } catch (e: NumberFormatException) {
-                        // Handle the NumberFormatException appropriately
-                        println("Error: Failed to parse file name as a number.")
-                        e.printStackTrace()
-                    }
-                }
-            } else {
-                // Handle the case when no file is selected or an issue occurred
-                println("Error: File not loaded or issue with file loading.")
-            }
-        }
+    val mutableBitmapState: MutableState<ImageBitmap?> = mutableStateOf(null)
+    val mutableFrontIdBitmapState: MutableState<ImageBitmap?> = mutableStateOf(null)
+    val mutableBackIdBitmapState: MutableState<ImageBitmap?> = mutableStateOf(null)
+    val stroke = Stroke(
+        width = 2f,
+        pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f), 0f)
     )
-
-    var showFilePicker by remember { mutableStateOf(false) }
-    val fileType = listOf("jpg", "png", "pdf", "*/*")
-    FilePicker(show = showFilePicker, fileExtensions = fileType) { file ->
-        println("Files loaded;;;;;;;;;;;;;::::" + file.toString())
-
-        showFilePicker = false
-        // do something with the file
-
-
-    }
+    val color = MaterialTheme.colorScheme.onBackground
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
-            TopAppBar(
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.primary,
-                ),
-                title = {
+
+
+        }
+    ) { innerPadding ->
+        LazyColumn(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {
+            item {
+                Spacer(modifier = Modifier.padding(innerPadding))
+            }
+            item {
+                Text(
+                    text = "Please upload a copy of the identity card and  clear passport/ID photo",
+                    fontSize = 14.sp
+                )
+                Text(
+                    text = "Upload these documents",
+                    fontSize = 12.sp
+                )
+                Box(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(top = 10.dp)
+                        .wrapContentHeight()
+                        .clickable {
+                            component.loadFiles.loadImages { image ->
+                                println("Loaded camera image + " + image)
+                                mutableBitmapState.value = image
+                            }
+                        }
+                        .drawBehind {
+                            drawRoundRect(color = color, style = stroke)
+                        }
+                ) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        IconButton(onClick = {
-                            /* do something */
-                        }) {
-                            Icon(
-                                Icons.Filled.KeyboardArrowLeft,
-                                contentDescription = "Localized description",
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth(0.5f)
+                                .padding(start = 5.dp)
+                        ) {
+                            Text(
+                                text = "Take Passport Photo",
+                                fontSize = 10.sp,
+                                color = MaterialTheme.colorScheme.primary
+                            )
+                            Text(
+                                text = "Please not  that Screenshots, Mobile phone bills and insurance are not accepted for verification",
+                                fontSize = 10.sp,
+                                style = MaterialTheme.typography.bodySmall
                             )
                         }
-                        Text(
-                            "Order",
-                            modifier = Modifier
-                        )
-                        IconButton(onClick = {
-                            /* do something */
-                        }) {
-                            Icon(
-                                Icons.Filled.Favorite,
-                                contentDescription = "Localized description",
+                        if (mutableBitmapState.value == null) {
+                            Image(
+                                painter = painterResource("camera.png"),
+                                contentDescription = "Take photo",
+                                contentScale = ContentScale.FillBounds,
+                                modifier = Modifier
+                                    .size(60.dp)
+                                    .padding(end = 10.dp)
+                                    .clickable {
+                                        component.loadFiles.loadImages { image ->
+                                            println("Loaded camera image + " + image)
+                                            mutableBitmapState.value = image
+                                        }
+                                    }
                             )
+                        } else {
+                            mutableBitmapState.value?.let { image ->
+                                Image(
+                                    bitmap = image,
+                                    contentDescription = null,
+                                    modifier = Modifier
+                                        .size(150.dp)
+                                        .padding(1.dp),
+                                    alignment = Alignment.CenterEnd
+                                )
+                            }
                         }
                     }
                 }
-            )
-        }
-    ) { innerPadding ->
-        Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {
-            Spacer(modifier = Modifier.padding(innerPadding))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                FilledTonalButtonExample(
-                    onClick = {
-                        //Take photos
-                        component.loadFiles.loadImages { image ->
-                            println("Loaded camera image + " + image)
-                            mutableBitmapState.value = image
+                Box(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(top = 16.dp)
+                        .wrapContentHeight()
+                        .clickable {
+                            component.loadFiles.loadFiles { image ->
+                                println("Loaded camera image + " + image)
+                                mutableFrontIdBitmapState.value = image
+                            }
                         }
+                        .drawBehind {
+                            drawRoundRect(color = color, style = stroke)
+                        }
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth(0.5f)
+                                .padding(start = 5.dp)
+                        ) {
+                            Text(
+                                text = "Front Side of your",
+                                fontSize = 10.sp,
+                                color = MaterialTheme.colorScheme.primary
+                            )
+                            Text(
+                                text = "National ID/Passport",
+                                fontSize = 10.sp,
+                                color = MaterialTheme.colorScheme.primary
+                            )
+                            Text(
+                                text = "Upload front side",
+                                fontSize = 10.sp
+                            )
+                            Text(
+                                text = "A front  picture of your National ID/Passport",
+                                fontSize = 10.sp,
+                                style =MaterialTheme.typography.bodySmall
+                            )
 
-                    },
-                    label = "Take photo "
-                )
-                //open local storage and load the image
-                mutableBitmapState.value.let {
-                    if (it != null) {
-                        Image(bitmap = it, contentDescription = null)
+                        }
+                        if (mutableFrontIdBitmapState.value == null) {
+                            Image(
+                                painter = painterResource("id-card.png"),
+                                contentDescription = "Take photo",
+                                contentScale = ContentScale.FillBounds,
+                                modifier = Modifier
+                                    .padding(end = 10.dp)
+                                    .size(70.dp)
+                                    .clickable {
+                                        component.loadFiles.loadFiles { image ->
+                                            println("Loaded camera image + " + image)
+                                            mutableFrontIdBitmapState.value = image
+                                        }
+                                    }
+                            )
+                        } else {
+                            mutableFrontIdBitmapState.value.let { image ->
+                                if (image != null) {
+                                    Image(
+                                        bitmap = image,
+                                        contentDescription = null,
+                                        modifier = Modifier
+                                            .size(150.dp)
+                                            .padding(1.dp),
+                                        alignment = Alignment.CenterEnd
+                                    )
+                                }
+                            }
+                        }
                     }
+                }
+                Box(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(top = 16.dp)
+                        .wrapContentHeight()
+                        .clickable {
+                            component.loadFiles.loadFiles { image ->
+                                println("Loaded camera image + " + image)
+                                mutableBackIdBitmapState.value = image
+                            }
+                        }
+                        .drawBehind {
+                            drawRoundRect(color = color, style = stroke)
+                        }
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth(0.5f)
+                                .padding(start = 5.dp)
+                        ) {
+                            Text(
+                                text = "Back Side of your",
+                                fontSize = 10.sp,
+                                color = MaterialTheme.colorScheme.primary
+                            )
+                            Text(
+                                text = "National ID/Passport",
+                                fontSize = 10.sp,
+                                color = MaterialTheme.colorScheme.primary
+                            )
+                            Text(
+                                text = "Upload back side",
+                                fontSize = 10.sp
+                            )
+                            Text(
+                                text = "A back picture of your National ID/Passport",
+                                fontSize = 10.sp,
+                                style =MaterialTheme.typography.bodySmall
+                            )
 
+                        }
+                        if (mutableBackIdBitmapState.value == null) {
+                            Image(
+                                painter = painterResource("id-card.png"),
+                                contentDescription = "Take photo",
+                                contentScale = ContentScale.FillBounds,
+                                modifier = Modifier
+                                    .padding(end = 10.dp)
+                                    .size(70.dp)
+                                    .clickable {
+                                        component.loadFiles.loadFiles { image ->
+                                            println("Loaded camera image + " + image)
+                                            mutableBackIdBitmapState.value = image
+                                        }
+                                    }
+                            )
+                        } else {
+                            mutableBackIdBitmapState.value.let { image ->
+                                if (image != null) {
+                                    Image(
+                                        bitmap = image,
+                                        contentDescription = null,
+                                        modifier = Modifier
+                                            .size(150.dp)
+                                            .padding(1.dp),
+                                        alignment = Alignment.CenterEnd
+                                    )
+                                }
+
+                            }
+
+                        }
+                    }
                 }
             }
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                FilledTonalButtonExample(
-                    onClick = {
-                        //Take photos
-                        component.loadFiles.loadFiles { file ->
-                            println("Loaded files Data + " + file)
-                        }
+            item {
+                Row(modifier = Modifier.padding(top = 20.dp, bottom = 20.dp)) {
 
-                    },
-                    label = " Deliver "
-                )
-                FilledTonalButtonExample(
-                    onClick = {
-                        component.loadFiles.loadFiles { it ->
-                            println("Loaded file" + it)
-                        }
-                    },
-                    label = " Pick Up "
-                )
+                }
             }
 
         }
