@@ -31,7 +31,7 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
             handleFileSelectionResult(result.resultCode, result.data?.data)
         }
 
-    actual fun loadFiles(callback: (String?) -> Unit) {
+    actual fun loadFiles(callback: (ImageBitmap?) -> Unit) {
         // Use the file picker to pick a PDF file
         if (ContextCompat.checkSelfPermission(
                 currentActivity,
