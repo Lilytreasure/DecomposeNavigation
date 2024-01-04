@@ -6,10 +6,13 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Build
 import android.provider.DocumentsContract
 import android.provider.OpenableColumns
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
@@ -17,37 +20,46 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.atwa.filepicker.core.FilePicker
 import java.io.File
+import java.io.IOException
 
 actual open class PlatformSpecific(private val context: Context) : AppCompatActivity() {
     private val PICK_PDF_FILE = 2
     private val PICK_FILE_REQUEST_CODE = 123
     private val currentActivity: AppCompatActivity = (context as AppCompatActivity)
     private val filePicker = FilePicker.getInstance(currentActivity)
-
-    //private lateinit var filePickerLauncher: ActivityResultLauncher<Intent>
+    private val PICK_IMAGE_REQUEST_CODE = 123
     private val CAMERA_PERMISSION_REQUEST_CODE = 123
     val filePickerLauncher =
         currentActivity.registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             handleFileSelectionResult(result.resultCode, result.data?.data)
         }
 
+    //Modified to support android version below and above 13
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     actual fun loadFiles(callback: (ImageBitmap?) -> Unit) {
-        // Use the file picker to pick a PDF file
         if (ContextCompat.checkSelfPermission(
                 currentActivity,
-                Manifest.permission.READ_EXTERNAL_STORAGE
+                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                } else {
+                    Manifest.permission.READ_MEDIA_IMAGES
+                }
             ) == PackageManager.PERMISSION_GRANTED
         ) {
-            loadDeviceFiles()
-        }else{
+            loadDeviceFiles(callback)
+        } else {
             ActivityCompat.requestPermissions(
                 currentActivity,
-                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
+                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
+                } else {
+                    arrayOf(Manifest.permission.READ_MEDIA_IMAGES)
+                },
                 PICK_FILE_REQUEST_CODE
             )
-
         }
     }
+
     actual fun loadImages(callback: (ImageBitmap?) -> Unit) {
         if (ContextCompat.checkSelfPermission(
                 currentActivity,
@@ -66,6 +78,42 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
         }
     }
 
+    fun openImagePicker() {
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+        intent.addCategory(Intent.CATEGORY_OPENABLE)
+        intent.type = "image/*" // Set the MIME type to allow only image files
+
+        currentActivity.startActivityForResult(intent, PICK_IMAGE_REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == PICK_IMAGE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            // Handle the selected image URI
+            val selectedImageUri: Uri? = data?.data
+            selectedImageUri?.let { uri ->
+                // Convert URI to Bitmap
+                val bitmap: Bitmap? = uriToBitmap(uri)
+
+                if (bitmap != null) {
+                    // Do something with the bitmap
+
+                }
+            }
+        }
+    }
+
+    private fun uriToBitmap(uri: Uri): Bitmap? {
+        return try {
+            val inputStream = currentActivity.contentResolver.openInputStream(uri)
+            BitmapFactory.decodeStream(inputStream)
+        } catch (e: IOException) {
+            e.printStackTrace()
+            null
+        }
+    }
+
     private fun captureImage(callback: (ImageBitmap?) -> Unit) {
         filePicker.captureCameraImage { meta ->
             val name: String? = meta?.name
@@ -81,38 +129,16 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
         }
     }
 
-    private fun loadDeviceFiles(){
-        filePicker.pickPdf { meta ->
-            // Get the selected file name
-            val name = meta?.name
-
-            // Perform other actions with the file metadata if needed
+    private fun loadDeviceFiles(callback: (ImageBitmap?) -> Unit) {
+        filePicker.pickImage() { meta ->
+            val name: String? = meta?.name
             val sizeKb: Int? = meta?.sizeKb
             val file: File? = meta?.file
-            println("Loaded File name;;;;;;;;: $name")
-
-            // Invoke the callback with the selected file name
-        }
-
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == PICK_FILE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            data?.data?.let { selectedFileUri ->
-                // Get the file name from the URI
-                val fileName = getFileName(selectedFileUri)
-
-                // Print or use the file name as needed
-                println("Selected file name: $fileName")
-            }
-        } else {
-
-            println("Error opening")
-
+            val bitmapimage: ImageBitmap? = meta?.bitmap?.asImageBitmap()
+            callback(bitmapimage)
         }
     }
+
 
     fun openFile(pickerInitialUri: Uri) {
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
@@ -154,6 +180,13 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
         } else {
             println("Error opening or user canceled")
         }
+    }
+
+    actual fun launchDialer(phoneNumber: String) {
+        val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phoneNumber"))
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        context.startActivity(intent)
+
     }
 
 }

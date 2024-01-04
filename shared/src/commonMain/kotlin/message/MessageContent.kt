@@ -106,7 +106,7 @@ fun MessageContent(
                                 color = MaterialTheme.colorScheme.primary
                             )
                             Text(
-                                text = "Please not  that Screenshots, Mobile phone bills and insurance are not accepted for verification",
+                                text = "Please take a photo for verification",
                                 fontSize = 10.sp,
                                 style = MaterialTheme.typography.bodySmall
                             )
