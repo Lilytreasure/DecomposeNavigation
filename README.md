@@ -7,10 +7,7 @@ Decompose is a Kotlin Multiplatform library for breaking down your code into lif
 https://arkivanov.github.io/Decompose/getting-started/quick-start/<br>
 https://github.com/arkivanov/Decompose<br>
 Also includes Depedency injection with Koin and examples of how to access Device Specific APIs
-
-
-![Screenshot_20240112-140615](https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/a109ae4c-158a-4946-9be7-7742d8c315dc)
-
+![Screenshot_20240112-140701](https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/614aada6-a79b-46bb-907b-0dfe4137a9d0)
 
 
 https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/48657015-c468-4f5e-be48-b21be0215070
@@ -25,7 +22,7 @@ https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/48657015-c46
   </tr>
     <tr> 
    <td><img src="https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/a109ae4c-158a-4946-9be7-7742d8c315dc.png" alt="About" style="width:250px;height:500px;"></td>
-   <td><img src="https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/c1a4567e-c22b-4553-b0ec-aea90278731e.png" alt="Search" style="width:250px;height:500px;"></td>
+   <td><img src="https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/614aada6-a79b-46bb-907b-0dfe4137a9d0.png" alt="About" style="width:250px;height:500px;"></td>
   </tr>
 </table><br>
 
