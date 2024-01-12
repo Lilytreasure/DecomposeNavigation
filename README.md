@@ -13,9 +13,6 @@ Also includes Depedency injection with Koin and examples of how to access Device
 https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/48657015-c468-4f5e-be48-b21be0215070
 
 #ScreenShot
-![Screenshot_20240112-140450](https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/ca6301dd-85a8-4cf1-b75b-ac13b5d4aa2b)
-
-
 
 
  <table>
