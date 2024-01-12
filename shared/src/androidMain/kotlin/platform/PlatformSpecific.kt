@@ -23,7 +23,6 @@ import java.io.File
 import java.io.IOException
 
 actual open class PlatformSpecific(private val context: Context) : AppCompatActivity() {
-    private val PICK_PDF_FILE = 2
     private val PICK_FILE_REQUEST_CODE = 123
     private val currentActivity: AppCompatActivity = (context as AppCompatActivity)
     private val filePicker = FilePicker.getInstance(currentActivity)

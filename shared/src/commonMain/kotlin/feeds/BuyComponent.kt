@@ -1,6 +1,6 @@
 package feeds
 
-interface FeedsComponent {
+interface BuyComponent {
 
     fun onUpdateGreetingText()
     fun onBackClicked()

@@ -27,11 +27,14 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,7 +44,10 @@ import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import theme.buttonColor
 
-@OptIn(ExperimentalResourceApi::class, ExperimentalFoundationApi::class)
+@OptIn(
+    ExperimentalResourceApi::class, ExperimentalFoundationApi::class,
+    ExperimentalMaterial3Api::class
+)
 @Composable
 fun WelcomeContent(
     component: WelcomeComponent,
@@ -54,37 +60,43 @@ fun WelcomeContent(
         modifier = Modifier
             .fillMaxSize(),
         topBar = {
-            Row(modifier = Modifier.background(color = MaterialTheme.colorScheme.primary)) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 16.dp, end = 16.dp, top = 10.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                ) {
-                    Column() {
-                        Text(
-                            text = "Location",
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSecondaryContainer
-                        )
-                        Text(
-                            text = "Dennis",
-                            style = MaterialTheme.typography.titleSmall,
-                            color = MaterialTheme.colorScheme.onSecondaryContainer
-                        )
+            TopAppBar(
+                title = {
+                    Row(modifier = Modifier.background(color = MaterialTheme.colorScheme.primary)) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(start = 16.dp, end = 16.dp, top = 10.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                        ) {
+                            Column() {
+                                Text(
+                                    text = "Location",
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.onSecondaryContainer
+                                )
+                                Text(
+                                    text = "Dennis",
+                                    style = MaterialTheme.typography.titleSmall,
+                                    color = MaterialTheme.colorScheme.onSecondaryContainer
+                                )
+                            }
+                            //open file picker and set profile  picture
+
+
+                            Image(
+                                painter = painterResource("img.png"),
+                                contentDescription = "profile Picture",
+                                modifier = Modifier
+                                    .width(44.dp)
+                                    .height(44.dp)
+                            )
+                        }
                     }
-                    //open file picker and set profile  picture
 
-
-                    Image(
-                        painter = painterResource("img.png"),
-                        contentDescription = "profile Picture",
-                        modifier = Modifier
-                            .width(44.dp)
-                            .height(44.dp)
-                    )
-                }
-            }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primary)
+            )
         },
 
         ) { innePadding ->

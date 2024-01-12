@@ -4,10 +4,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material.icons.outlined.Badge
 import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.RssFeed
+import androidx.compose.material.icons.outlined.Notifications
+import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -41,9 +41,9 @@ fun RootBottomScreen(component: RootBottomComponent, modifier: Modifier = Modifi
         mutableStateOf(
             listOf(
                 ScreensBottom("Home", component::openHome, false),
-                ScreensBottom("Feeds", component::openFeeds, false),
-                ScreensBottom("Shopping", component::openMessage, false),
-                ScreensBottom("Notification", component::openNotifications, false)
+                ScreensBottom("Buy", component::openFeeds, false),
+                ScreensBottom("About", component::openMessage, false),
+                ScreensBottom("Notify", component::openNotifications, false)
             )
         )
     }
@@ -57,18 +57,18 @@ fun RootBottomScreen(component: RootBottomComponent, modifier: Modifier = Modifi
                             icon = {
                                 when (screensBottom.name) {
                                     "Home" -> Icon(Icons.Outlined.Home, contentDescription = null)
-                                    "Feeds" -> Icon(
-                                        Icons.Outlined.RssFeed,
+                                    "Buy" -> Icon(
+                                        Icons.Outlined.ShoppingCart,
                                         contentDescription = null
                                     )
 
-                                    "Shopping" -> Icon(
-                                        Icons.Default.ShoppingCart,
+                                    "About" -> Icon(
+                                        Icons.Outlined.Badge,
                                         contentDescription = null
                                     )
 
-                                    "Notification" -> Icon(
-                                        Icons.Default.Notifications,
+                                    "Notify" -> Icon(
+                                        Icons.Outlined.Notifications,
                                         contentDescription = null
                                     )
                                 }
@@ -76,10 +76,10 @@ fun RootBottomScreen(component: RootBottomComponent, modifier: Modifier = Modifi
                             label = { Text(text = screensBottom.name) },
                             selected = selectedItem == index,
                             onClick = {
-                                selectedItem=index
+                                selectedItem = index
                                 screensBottom.openScreen()
                             },
-                            colors =NavigationBarItemDefaults.colors(selectedIconColor = MaterialTheme.colorScheme.primary)
+                            colors = NavigationBarItemDefaults.colors(selectedIconColor = MaterialTheme.colorScheme.primary)
                         )
                     }
                 }
@@ -96,7 +96,11 @@ fun RootBottomScreen(component: RootBottomComponent, modifier: Modifier = Modifi
                     when (val child = it.instance) {
                         is RootBottomComponent.ChildBottom.WelcomeChild -> WelcomeContent(component = child.component)
                         is RootBottomComponent.ChildBottom.FeedsChild -> FeedsContent(component = child.component)
-                        is RootBottomComponent.ChildBottom.MessageChild -> MessageContent(component = child.component,modifier)
+                        is RootBottomComponent.ChildBottom.MessageChild -> MessageContent(
+                            component = child.component,
+                            modifier
+                        )
+
                         is RootBottomComponent.ChildBottom.NotificationsChild -> NotificationContent(
                             component = child.component
                         )

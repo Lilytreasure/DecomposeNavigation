@@ -18,7 +18,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -37,7 +36,7 @@ import org.jetbrains.compose.resources.painterResource
 @OptIn(ExperimentalResourceApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun MessageContent(
-    component: MessageComponent,
+    component: AboutComponent,
     modifier: Modifier = Modifier,
 ) {
     val mutableBitmapState: MutableState<ImageBitmap?> = mutableStateOf(null)
@@ -51,15 +50,8 @@ fun MessageContent(
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
-            TopAppBar(
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.primary,
-                ),
-                title = {
-                    Text("Small Top App Bar")
-                }
-            )
+            TopAppBar(title = { Text(text = "About",
+                fontSize = 15.sp) })
         }
     ) { innerPadding ->
         LazyColumn(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {

@@ -2,7 +2,7 @@ package message
 
 import platform.PlatformSpecific
 
-interface MessageComponent {
+interface AboutComponent {
     val loadFiles: PlatformSpecific
 
     fun onUpdateGreetingText()
