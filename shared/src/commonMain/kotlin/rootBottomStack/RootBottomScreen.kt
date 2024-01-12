@@ -22,6 +22,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.fade
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.plus
@@ -73,7 +74,13 @@ fun RootBottomScreen(component: RootBottomComponent, modifier: Modifier = Modifi
                                     )
                                 }
                             },
-                            label = { Text(text = screensBottom.name) },
+                            label = {
+                                Text(
+                                    text = screensBottom.name,
+                                    style = MaterialTheme.typography.labelLarge,
+                                    fontWeight = FontWeight.Light
+                                )
+                            },
                             selected = selectedItem == index,
                             onClick = {
                                 selectedItem = index

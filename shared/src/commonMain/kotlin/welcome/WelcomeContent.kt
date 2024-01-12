@@ -195,7 +195,7 @@ fun WelcomeContent(
                                     ) {
                                         Text(
                                             text = "Buy one get one FREE",
-                                            style = MaterialTheme.typography.headlineSmall,
+                                            style = MaterialTheme.typography.titleLarge,
                                             color = MaterialTheme.colorScheme.onSecondaryContainer,
                                             modifier = Modifier
                                                 .fillMaxWidth(0.5f)
@@ -239,7 +239,8 @@ fun WelcomeContent(
 @Composable
 fun FilledTonalButton(onClick: () -> Unit) {
     FilledTonalButton(onClick = { onClick() }) {
-        Text("Cappuccino")
+        Text("Cappuccino",
+            style = MaterialTheme.typography.labelLarge)
     }
 }
 
@@ -261,18 +262,22 @@ fun ProductsCard() {
                     Text(
                         text = "6.5",
                         modifier = Modifier.padding(start = 12.dp),
-                        color = MaterialTheme.colorScheme.onSecondaryContainer
+                        color = MaterialTheme.colorScheme.onSecondaryContainer,
+                        style = MaterialTheme.typography.labelMedium
                     )
                 }
             }
             Column(modifier = Modifier.padding(top = 12.dp, start = 12.dp)) {
-                Text(text = "Cappucino")
-                Text(text = "with Chocolate")
+                Text(text = "Cappucino",
+                    style = MaterialTheme.typography.bodyMedium)
+                Text(text = "with Chocolate",
+                     style = MaterialTheme.typography.bodyMedium)
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Text(text = "$ 4.53")
+                    Text(text = "$ 4.53",
+                        style = MaterialTheme.typography.labelLarge)
                 }
             }
         }
