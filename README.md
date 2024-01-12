@@ -15,11 +15,10 @@ https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/48657015-c46
 
 
  <table>
-    <tr>
-   <td><img src="https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/c1a4567e-c22b-4553-b0ec-aea90278731e.png" alt="Search" style="width:250px;height:500px;"></td>
 
-  </tr>
   <tr>
+    
+   <td><img src="https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/c1a4567e-c22b-4553-b0ec-aea90278731e.png" alt="Search" style="width:250px;height:500px;"></td>
    <td><img src="https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/c1a4567e-c22b-4553-b0ec-aea90278731e.png" alt="Search" style="width:250px;height:500px;"></td>
 
   </tr>
