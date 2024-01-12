@@ -8,10 +8,6 @@ https://arkivanov.github.io/Decompose/getting-started/quick-start/<br>
 https://github.com/arkivanov/Decompose<br>
 Also includes Depedency injection with Koin and examples of how to access Device Specific APIs
 
-![Screenshot_20240112-140731](https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/41ee27df-1d3a-4bde-a229-3c2690d69569)
-
-
-
 https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/48657015-c468-4f5e-be48-b21be0215070
 
  <table>
