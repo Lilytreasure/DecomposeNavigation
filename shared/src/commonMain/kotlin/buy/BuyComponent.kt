@@ -1,6 +1,6 @@
-package welcome
+package buy
 
-interface WelcomeComponent {
+interface BuyComponent {
 
     fun onUpdateGreetingText()
     fun onBackClicked()

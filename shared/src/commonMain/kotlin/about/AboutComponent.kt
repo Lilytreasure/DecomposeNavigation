@@ -1,4 +1,4 @@
-package message
+package about
 
 import platform.PlatformSpecific
 

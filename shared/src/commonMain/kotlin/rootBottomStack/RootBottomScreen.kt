@@ -28,10 +28,10 @@ import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.fade
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.plus
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.scale
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
-import feeds.FeedsContent
-import message.MessageContent
+import buy.FeedsContent
+import about.MessageContent
 import notifications.NotificationContent
-import welcome.WelcomeContent
+import home.WelcomeContent
 
 data class ScreensBottom(val name: String, val openScreen: () -> Unit, val isSelected: Boolean)
 

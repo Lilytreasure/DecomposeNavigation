@@ -1,4 +1,4 @@
-package message
+package about
 
 import com.arkivanov.decompose.ComponentContext
 import org.koin.core.component.KoinComponent

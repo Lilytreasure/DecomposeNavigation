@@ -1,12 +1,12 @@
-package welcome
+package home
 
 import com.arkivanov.decompose.ComponentContext
 
 
-class DefaultWelcomeComponent(
+class DefaultHomeComponent(
     private val componentContext: ComponentContext,
     private val onFinished: () -> Unit,
-) : WelcomeComponent, ComponentContext by componentContext {
+) : HomeComponent, ComponentContext by componentContext {
     override fun onUpdateGreetingText() {
     }
     override fun onBackClicked() {

@@ -1,4 +1,4 @@
-package feeds
+package buy
 
 import com.arkivanov.decompose.ComponentContext
 

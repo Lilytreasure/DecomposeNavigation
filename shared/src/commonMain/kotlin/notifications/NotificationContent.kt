@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun NotificationContent(component: NotificationComponent, modifier: Modifier = Modifier) {
     Scaffold(topBar = {
-        TopAppBar(title = { Text(text = "Native API illustration", fontSize = 15.sp) })
+        TopAppBar(title = { Text(text = "Notify", fontSize = 15.sp) })
     }) { paddingValues ->
         Column(
             modifier = Modifier.padding(paddingValues)

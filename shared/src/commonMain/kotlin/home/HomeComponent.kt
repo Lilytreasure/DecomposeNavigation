@@ -1,6 +1,6 @@
-package feeds
+package home
 
-interface BuyComponent {
+interface HomeComponent {
 
     fun onUpdateGreetingText()
     fun onBackClicked()

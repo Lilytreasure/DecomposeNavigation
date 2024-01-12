@@ -1,4 +1,4 @@
-package message
+package about
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -60,17 +60,15 @@ fun MessageContent(
             }
             item {
                 Text(
-                    text = "Please upload a copy of the identity card and  clear passport/ID photo",
-                    fontSize = 14.sp
-                )
-                Text(
                     text = "Upload these documents",
-                    fontSize = 12.sp
+                    fontSize = 12.sp,
+                    style = MaterialTheme.typography.titleLarge,
+                    modifier = Modifier.padding(top = 10.dp)
                 )
                 Box(
                     Modifier
                         .fillMaxWidth()
-                        .padding(top = 10.dp)
+                        .padding(top = 16.dp)
                         .wrapContentHeight()
                         .clickable {
                             component.loadFiles.loadImages { image ->

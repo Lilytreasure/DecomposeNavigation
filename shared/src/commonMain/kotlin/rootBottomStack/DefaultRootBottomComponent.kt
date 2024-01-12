@@ -10,14 +10,14 @@ import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.lifecycle.Lifecycle
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
-import feeds.DefautBuyComponent
-import feeds.BuyComponent
-import message.DefaultAboutComponent
-import message.AboutComponent
+import buy.DefautBuyComponent
+import buy.BuyComponent
+import about.DefaultAboutComponent
+import about.AboutComponent
 import notifications.DefaultNotificationComponent
 import notifications.NotificationComponent
-import welcome.DefaultWelcomeComponent
-import welcome.WelcomeComponent
+import home.DefaultHomeComponent
+import home.HomeComponent
 
 
 class DefaultRootBottomComponent(
@@ -63,8 +63,8 @@ class DefaultRootBottomComponent(
         }
 
 
-    private fun welcomeComponent(componentContext: ComponentContext): WelcomeComponent =
-        DefaultWelcomeComponent(
+    private fun welcomeComponent(componentContext: ComponentContext): HomeComponent =
+        DefaultHomeComponent(
             componentContext = componentContext,
             onFinished = {
 

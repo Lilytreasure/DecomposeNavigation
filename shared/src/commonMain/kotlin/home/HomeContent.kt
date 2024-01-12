@@ -1,4 +1,4 @@
-package welcome
+package home
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -50,7 +50,7 @@ import theme.buttonColor
 )
 @Composable
 fun WelcomeContent(
-    component: WelcomeComponent,
+    component: HomeComponent,
     modifier: Modifier = Modifier
 ) {
     val pagerState = rememberPagerState(pageCount = {
