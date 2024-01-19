@@ -1,5 +1,9 @@
 package rootBottomStack
 
+import about.AboutComponent
+import about.DefaultAboutComponent
+import buy.BuyComponent
+import buy.DefautBuyComponent
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
@@ -10,14 +14,10 @@ import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.lifecycle.Lifecycle
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
-import buy.DefautBuyComponent
-import buy.BuyComponent
-import about.DefaultAboutComponent
-import about.AboutComponent
-import notifications.DefaultNotificationComponent
-import notifications.NotificationComponent
 import home.DefaultHomeComponent
 import home.HomeComponent
+import notifications.DefaultNotificationComponent
+import notifications.NotificationComponent
 
 
 class DefaultRootBottomComponent(

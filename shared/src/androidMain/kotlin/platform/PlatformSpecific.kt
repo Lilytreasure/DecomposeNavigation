@@ -85,6 +85,7 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
         currentActivity.startActivityForResult(intent, PICK_IMAGE_REQUEST_CODE)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -139,6 +140,7 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun openFile(pickerInitialUri: Uri) {
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
             addCategory(Intent.CATEGORY_OPENABLE)
