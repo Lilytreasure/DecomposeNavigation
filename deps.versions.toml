@@ -5,7 +5,7 @@ moko = "0.23.0"
 
 moko-graphics = "0.9.0"
 mviKotlin = "3.2.1"
-logbackClassic = "1.2.11"
+logbackClassic = "1.5.5"
 sqlDelight = "2.0.0"
 koin = "3.5.0"
 ktor = "2.3.7"
