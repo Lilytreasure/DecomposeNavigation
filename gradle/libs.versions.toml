@@ -1,0 +1,130 @@
+[versions]
+agp = "8.1.1"
+android-compileSdk = "34"
+android-minSdk = "24"
+android-targetSdk = "34"
+androidx-activityCompose = "1.8.2"
+androidx-constraintlayout = "2.1.4"
+androidx-core-ktx = "1.12.0"
+androidx-espresso-core = "3.5.1"
+androidx-material = "1.11.0"
+androidx-test-junit = "1.1.5"
+compose = "1.5.10"
+compose-plugin = "1.6.0"
+junit = "4.13.2"
+kotlin = "1.9.20"
+serialization = "1.6.2"
+moko = "0.23.0"
+moko-graphics = "0.9.0"
+mviKotlin = "3.2.1"
+logbackClassic = "1.2.11"
+sqlDelight = "2.0.0"
+koin = "3.5.0"
+ktor = "2.3.7"
+decompose = "2.1.3"
+essenty = "1.2.0"
+parcelizeDarwin = "0.2.2"
+jetbrainsCompose = "1.5.10"
+jetbrainsKotlinxCoroutines = "1.8.0"
+jetbrainsBinaryCompatibilityValidator = "0.13.2"
+androidxCore = "1.12.0"
+androidxAppcompat = "1.6.1"
+androidxLifecycle = "2.7.0"
+androidxActivity = "1.8.2"
+androidxFragment = "1.6.2"
+androidxTestCore = "1.5.0"
+extensionJetbrains = "2.0.0-compose-experimental-alpha-02"
+russhwolf = "1.1.0"
+gms = "4.4.0"
+analytics = "21.3.0"
+crashlytics = "18.3.2"
+
+
+[libraries]
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
+androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-junit" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-espresso-core" }
+androidx-material = { group = "com.google.android.material", name = "material", version.ref = "androidx-material" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidx-constraintlayout" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+
+analytics-firebase = {group = "com.google.firebase", name = "firebase-analytics-ktx", version.ref = "analytics"}
+crashlytics-firebase = {group = "com.google.firebase", name = "firebase-crashlytics-ktx", version.ref = "crashlytics"}
+
+gms-google-services = {group = "com.google.gms", name = "google-services", version.ref = "gms"}
+
+russhwolf-settings-core = {group = "com.russhwolf", name = "multiplatform-settings", version.ref = "russhwolf" }
+russhwolf-settings-serialization = {group = "com.russhwolf", name = "multiplatform-settings-serialization", version.ref = "russhwolf" }
+
+
+#Koin
+koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
+koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
+koin-test = { group = "io.insert-koin", name = "koin-test", version.ref = "koin" }
+
+
+#Decompose
+mvikotlin = { group = "com.arkivanov.mvikotlin", name = "mvikotlin", version.ref = "mviKotlin" }
+mviKotlin-mvikotlinMain = { group = "com.arkivanov.mvikotlin", name = "mvikotlin-main", version.ref = "mviKotlin" }
+mviKotlin-mvikotlinExtensionsCoroutines = { group = "com.arkivanov.mvikotlin", name = "mvikotlin-extensions-coroutines", version.ref = "mviKotlin" }
+decompose = { group = "com.arkivanov.decompose", name = "decompose", version.ref = "decompose" }
+decompose-jetbrains = { group = "com.arkivanov.decompose", name = "extensions-compose-jetbrains", version.ref = "extensionJetbrains" }
+essenty-lifecycle = { group = "com.arkivanov.essenty", name = "lifecycle", version.ref = "essenty" }
+essenty-stateKeeper = { group = "com.arkivanov.essenty", name = "state-keeper", version.ref = "essenty" }
+essenty-instanceKeeper = { group = "com.arkivanov.essenty", name = "instance-keeper", version.ref = "essenty" }
+essenty-backHandler = { group = "com.arkivanov.essenty", name = "back-handler", version.ref = "essenty" }
+parcelizeDarwin-gradlePlug = { group = "com.arkivanov.parcelize.darwin", name = "gradle-plugin", version.ref = "parcelizeDarwin" }
+parcelizeDarwin-runtime = { group = "com.arkivanov.parcelize.darwin", name = "runtime", version.ref = "parcelizeDarwin" }
+#Ktor
+ktor-ClientCore = {group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
+ktor-SerializationKotlinxJson = {group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor-ClientContentNegotiation = {group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-ClientLogging = {group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
+ktor-ClientAndroid = {group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
+ktor-ClientDarwin = {group = "io.ktor", name = "ktor-client-darwin", version.ref = "ktor" }
+#ktor-ClientJava = {group = "io.ktor", name = "ktor-client-java", version.ref = "ktor" }
+#ktor-ClientJs = {group = "io.ktor", name = "ktor-client-js", version.ref = "ktor" }
+
+#Ktor logback
+logbackClassic = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logbackClassic" }
+
+#Sql
+sqlDelight-gradlePlugin = {group = "app.cash.sqldelight", name = "gradle-plugin", version.ref = "sqlDelight" }
+sqlDelight-androidDriver = {group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqlDelight" }
+sqlDelight-sqliteDriver = {group = "app.cash.sqldelight", name = "sqlite-driver", version.ref = "sqlDelight" }
+sqlDelight-nativeDriver = {group = "app.cash.sqldelight", name = "native-driver", version.ref = "sqlDelight" }
+sqlDelight-sqljsDriver = {group = "app.cash.sqldelight", name = "sqljs-driver", version.ref = "sqlDelight" }
+sqlDelight-coroutinesExtensions = {group = "app.cash.sqldelight", name = "coroutines-extensions", version.ref = "sqlDelight" }
+sqlDelight-primitiveAdapters = {group = "app.cash.sqldelight", name = "primitive-adapters", version.ref = "sqlDelight" }
+
+
+androidx-core-coreKtx  = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCore" }
+androidx-appcompat-appcompat  = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppcompat" }
+androidx-lifecycle-lifecycleCommonJava8 = { group = "androidx.lifecycle", name = "lifecycle-common-java8", version.ref = "androidxLifecycle" }
+androidx-activity-activityKtx = { group = "androidx.activity", name = "activity-ktx", version.ref = "androidxActivity" }
+androidx-activity-activityCompose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
+androidx-fragment-fragmentKtx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "androidxFragment" }
+androidx-test-core = { group = "androidx.test", name = "core", version.ref = "androidxTestCore" }
+
+
+
+jetbrains-compose-composeGradlePlug = { group = "org.jetbrains.compose", name = "compose-gradle-plugin", version.ref = "jetbrainsCompose" }
+jetbrains-kotlinx-binaryCompatibilityValidator = { group = "org.jetbrains.kotlinx", name = "binary-compatibility-validator", version.ref = "jetbrainsBinaryCompatibilityValidator" }
+jetbrains-kotlinx-kotlinxCoroutinesCore = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "jetbrainsKotlinxCoroutines" }
+jetbrains-kotlinx-kotlinxSerializationJson = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization" }
+jetbrains-kotlinx-kotlinxCoroutinesSwing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "jetbrainsKotlinxCoroutines" }
+
+
+
+
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
+jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
