@@ -2,10 +2,10 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
-    id("com.arkivanov.parcelize.darwin") version "0.2.2"
+    id("com.arkivanov.parcelize.darwin") version "0.2.3"
     id("kotlin-parcelize")
     id("app.cash.sqldelight") version "2.0.0"
-    kotlin("plugin.serialization") version "1.9.20"
+    kotlin("plugin.serialization") version "1.9.21"
 }
 
 kotlin {
@@ -34,6 +34,7 @@ kotlin {
 
             // Optional, only if you need state preservation on Darwin (Apple) targets
             export(libs.parcelizeDarwin.runtime)
+
         }
     }
     
@@ -120,6 +121,7 @@ kotlin {
             implementation(libs.russhwolf.settings.serialization)
             //insets
             implementation("com.moriatsushi.insetsx:insetsx:0.1.0-alpha10")
+
         }
 
         iosMain.dependencies {
@@ -135,6 +137,8 @@ kotlin {
             api(libs.essenty.lifecycle)
             //Modified
             api(libs.parcelizeDarwin.runtime)
+
+            
 
         }
     }

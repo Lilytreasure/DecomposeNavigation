@@ -12,8 +12,6 @@ import com.arkivanov.decompose.router.stack.bringToFront
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.lifecycle.Lifecycle
-import com.arkivanov.essenty.parcelable.Parcelable
-import com.arkivanov.essenty.parcelable.Parcelize
 import home.DefaultHomeComponent
 import home.HomeComponent
 import kotlinx.serialization.Serializable
@@ -30,6 +28,7 @@ class DefaultRootBottomComponent(
     private val _childStackBottom =
         childStack(
             source = navigationBottomStackNavigation,
+            serializer = ConfigBottom.serializer(),
             initialConfiguration = ConfigBottom.Welcome,
             handleBackButton = true,
             childFactory = ::createChildBottom,
@@ -116,8 +115,8 @@ class DefaultRootBottomComponent(
         navigationBottomStackNavigation.bringToFront(ConfigBottom.Notification)
     }
 
-
-    private sealed class ConfigBottom : Parcelable {
+    @Serializable
+    private sealed class ConfigBottom {
         @Serializable
         data object Welcome : ConfigBottom()
 
