@@ -46,7 +46,7 @@ Also includes Depedency injection with Koin and examples of how to access Device
 #iOs
  <table>
   <tr>
-   <td><img src="https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/2aac792d-c034-4b8d-87ef-d6e8e5ce50dd.png" alt="Home" style="width:500px;height:500px;"></td>
+   <td><img src="https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/2aac792d-c034-4b8d-87ef-d6e8e5ce50dd.png" alt="Home" style="width:250px;height:500px;"></td>
   </tr>
 </table><br>
 
