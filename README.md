@@ -38,11 +38,15 @@ Also includes Depedency injection with Koin and examples of how to access Device
    <td><img src="https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/41ee27df-1d3a-4bde-a229-3c2690d69569.png" alt="Call" style="width:250px;height:500px;"></td>
   </tr>
 </table><br>
+<img width="434" alt="Screenshot 2024-04-17 at 16 00 28" src="https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/2aac792d-c034-4b8d-87ef-d6e8e5ce50dd">
+
+
+
 
 #iOs
  <table>
   <tr>
-   <td><img src="https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/6581d888-59cd-4375-82ca-ec2f5ed14c8b.png" alt="Home" style="width:250px;height:500px;"></td>
+   <td><img src="https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/2aac792d-c034-4b8d-87ef-d6e8e5ce50dd.png" alt="Home" style="width:250px;height:500px;"></td>
   </tr>
 </table><br>
 
