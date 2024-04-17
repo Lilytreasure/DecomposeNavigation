@@ -33,7 +33,7 @@ fun NotificationContent(component: NotificationComponent, modifier: Modifier = M
             Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 16.dp)) {
                 ElevatedButton(modifier = Modifier
                     .fillMaxWidth(), onClick = {
-                    component.platformSpecific.launchDialer("+2547897567")
+                    component.platformSpecific.launchDialer("2547897567")
 
                 }) {
                     Row(
