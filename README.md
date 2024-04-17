@@ -40,13 +40,6 @@ Also includes Depedency injection with Koin and examples of how to access Device
 </table><br>
 
 #iOs
-
-![Simulator Screen Shot - Dennisios - 2024-04-17 at 15 53 59](https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/6581d888-59cd-4375-82ca-ec2f5ed14c8b)
-
-
-
-
-
  <table>
   <tr>
    <td><img src="https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/6581d888-59cd-4375-82ca-ec2f5ed14c8b.png" alt="Home" style="width:250px;height:500px;"></td>
