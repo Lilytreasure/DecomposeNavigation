@@ -1,4 +1,6 @@
 import androidx.compose.ui.graphics.ImageBitmap
+import platform.AVFoundation.AVMediaTypeText
+import platform.AVFoundation.AVMediaTypeVideo
 import platform.AVFoundation.requestAccessForMediaType
 import platform.Foundation.NSURL
 import platform.Photos.PHPhotoLibrary
@@ -39,24 +41,25 @@ actual open class PlatformSpecific {
     }
 
     actual fun loadImages(callback: (ImageBitmap?) -> Unit) {
+        val cameraVc = UIImagePickerController()
+        platform.AVFoundation.AVCaptureDevice.requestAccessForMediaType(mediaType = AVMediaTypeVideo) {
+            if (it) {
+                println("Access granted;;;;")
+                //access granted
+//                cameraVc.sourceType =
+//                    UIImagePickerControllerSourceType.UIImagePickerControllerSourceTypeCamera
+//                UIApplication.sharedApplication.keyWindow?.rootViewController?.presentViewController(
+//                    cameraVc,
+//                    true,
+//                    null,
+//                )
+            } else {
 
-        //Todo--lauch camera and take photo
-//        val vc = UIImagePickerController()
-//        vc.sourceType = UIImagePickerControllerSourceType.UIImagePickerControllerSourceTypeCamera
-//        platform.AVFoundation.AVCaptureDevice.requestAccessForMediaType(mediaType = "\"public.image\"") {
-//            if (it) {
-//                println("Permitted camera")
-//
-//            } else {
-//                println(" Not Permitted camera")
-//            }
-//        }
-//        // self.present(vc, animated: true, completion: nil)
-//        UIApplication.sharedApplication.keyWindow?.rootViewController?.presentViewController(
-//            vc,
-//            true,
-//            null,
-//        )
+                println("Acces denied;;;;;;;")
+
+            }
+        }
+
     }
 
     actual fun launchDialer(phoneNumber: String) {
