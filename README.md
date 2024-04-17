@@ -22,7 +22,8 @@ What is Decompose?¶<br>
 Decompose is a Kotlin Multiplatform library for breaking down your code into lifecycle-aware business logic components (aka BLoC), with routing functionality and pluggable UI (Jetpack Compose, Android Views, SwiftUI, JS React, etc.).<br>
 https://arkivanov.github.io/Decompose/getting-started/quick-start/<br>
 https://github.com/arkivanov/Decompose<br>
-Also includes Depedency injection with Koin and examples of how to access Device Specific APIs
+Also includes Depedency injection with Koin and examples of how to access Device Specific APIs<Br>
+#Android
 
  <table>
   <tr>
@@ -37,5 +38,7 @@ Also includes Depedency injection with Koin and examples of how to access Device
    <td><img src="https://github.com/Lilytreasure/DecomposeNavigation/assets/78819932/41ee27df-1d3a-4bde-a229-3c2690d69569.png" alt="Call" style="width:250px;height:500px;"></td>
   </tr>
 </table><br>
+
+#iOs
 
 
