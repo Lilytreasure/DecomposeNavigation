@@ -16,7 +16,7 @@ kotlin {
             }
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -35,11 +35,15 @@ kotlin {
             // Optional, only if you need state preservation on Darwin (Apple) targets
             export(libs.parcelizeDarwin.runtime)
 
+            //coil
+            //export("io.coil-kt.coil3:coil:3.0.0-alpha01")
+
+
         }
     }
-    
+
     sourceSets {
-        
+
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
@@ -60,9 +64,9 @@ kotlin {
 
             implementation("androidx.biometric:biometric:1.2.0-alpha05")
             //Firebase
-            implementation ("com.google.firebase:firebase-bom:32.1.1")
-            implementation (libs.analytics.firebase)
-            implementation (libs.crashlytics.firebase)
+            implementation("com.google.firebase:firebase-bom:32.1.1")
+            implementation(libs.analytics.firebase)
+            implementation(libs.crashlytics.firebase)
             implementation("com.googlecode.libphonenumber:libphonenumber:8.2.0")
             // This dependency is downloaded from the Google’s Maven repository.
             // So, make sure you also include that repository in your project's build.gradle file.
@@ -71,7 +75,7 @@ kotlin {
             // For Kotlin users also import the Kotlin extensions library for Play In-App Update:
             implementation("com.google.android.play:app-update-ktx:2.1.0")
 
-            api ("com.github.atwa:filepicker:1.0.7")
+            api("com.github.atwa:filepicker:1.0.7")
 
         }
         commonMain.dependencies {
@@ -122,6 +126,12 @@ kotlin {
             //insets
             implementation("com.moriatsushi.insetsx:insetsx:0.1.0-alpha10")
 
+            //coil
+            implementation("io.coil-kt.coil3:coil:3.0.0-alpha01")
+
+            //KotlinxDate
+            implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.0-RC.2")
+
         }
 
         iosMain.dependencies {
@@ -138,7 +148,6 @@ kotlin {
             //Modified
             api(libs.parcelizeDarwin.runtime)
 
-            
 
         }
     }

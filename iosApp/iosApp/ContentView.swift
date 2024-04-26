@@ -14,15 +14,18 @@ struct ComposeView: UIViewControllerRepresentable {
         self.bottomSafeArea = bottomSafeArea
     }
     
+    
     func makeUIViewController(context: Context) -> UIViewController {
         MainViewControllerKt.MainViewController(
             lifecycle: lifecycle,
             topSafeArea: topSafeArea,
             bottomSafeArea: bottomSafeArea
         )
+
     }
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
-    
+   
+
 }
 
 struct ContentView: View {

@@ -14,6 +14,11 @@ import android.provider.OpenableColumns
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -189,5 +194,21 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
         context.startActivity(intent)
 
     }
+
+    @Composable
+    actual fun UploadFiles() {
+        Column(modifier =Modifier.fillMaxSize()){
+            Text(text = "UPload docs")
+
+        }
+
+    }
+
+    //Todo -----Under Heavy development
+    @Composable
+    actual fun CameraView() {
+
+    }
+
 
 }

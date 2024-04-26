@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
+import androidx.compose.material3.Button
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -49,6 +50,9 @@ fun NotificationContent(component: NotificationComponent, modifier: Modifier = M
                         Text(text = "Call")
                     }
                 }
+                //FilesUpload
+                component.platformSpecific.CameraView()
+
             }
         }
     }
