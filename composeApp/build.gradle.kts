@@ -77,6 +77,12 @@ kotlin {
 
             api("com.github.atwa:filepicker:1.0.7")
 
+            //Camera
+            implementation("androidx.camera:camera-camera2:1.3.1")
+            implementation("androidx.camera:camera-lifecycle:1.3.1")
+            implementation("androidx.camera:camera-view:1.3.1")
+            implementation("com.google.accompanist:accompanist-permissions:0.29.2-rc")
+
         }
         commonMain.dependencies {
             implementation(compose.runtime)

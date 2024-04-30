@@ -362,6 +362,7 @@ actual open class PlatformSpecific {
 
     @Composable
     actual fun CameraView(
+
     ) {
         val defaultOnCapture: (picture: PictureData.Camera, image: PlatformStorableImage) -> Unit =
             { picture, image ->
@@ -370,6 +371,7 @@ actual open class PlatformSpecific {
                 println("Picture captured with default implementation.")
                 println("Picture Data: $picture")
                 println("Platform Storable Image: $image")
+
             }
 
         var cameraAccess: CameraAccess by remember { mutableStateOf(CameraAccess.Undefined) }
