@@ -111,7 +111,6 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
             )
         }
     }
-
     fun openImagePicker() {
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.addCategory(Intent.CATEGORY_OPENABLE)
