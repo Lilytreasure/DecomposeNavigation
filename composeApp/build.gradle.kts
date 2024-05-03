@@ -137,7 +137,10 @@ kotlin {
 
             //KotlinxDate
             implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.0-RC.2")
-
+            // peekaboo-ui
+            implementation(libs.peekaboo.ui)
+            // peekaboo-image-picker
+            implementation(libs.peekaboo.image.picker)
         }
 
         iosMain.dependencies {

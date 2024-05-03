@@ -1,5 +1,4 @@
 import kotlinx.cinterop.ExperimentalForeignApi
-import kotlinx.coroutines.IO
 import platform.CoreFoundation.CFUUIDCreate
 import platform.CoreFoundation.CFUUIDCreateString
 import platform.Foundation.CFBridgingRelease

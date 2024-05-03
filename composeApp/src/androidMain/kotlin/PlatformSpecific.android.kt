@@ -285,23 +285,23 @@ actual open class PlatformSpecific(private val context: Context) : AppCompatActi
             }
         }
 
-        LaunchedEffect(isFrontCamera) {
-            cameraProvider = suspendCoroutine<ProcessCameraProvider> { continuation ->
-                ProcessCameraProvider.getInstance(context).also { cameraProvider ->
-                    cameraProvider.addListener({
-                        continuation.resume(cameraProvider.get())
-                    }, executor)
-                }
-            }
-            cameraProvider?.unbindAll()
-            cameraProvider?.bindToLifecycle(
-                lifecycleOwner,
-                cameraSelector,
-                preview,
-                imageCapture
-            )
-            preview.setSurfaceProvider(previewView.surfaceProvider)
-        }
+//        LaunchedEffect(isFrontCamera) {
+//            cameraProvider = suspendCoroutine<ProcessCameraProvider> { continuation ->
+//                ProcessCameraProvider.getInstance(context).also { cameraProvider ->
+//                    cameraProvider.addListener({
+//                        continuation.resume(cameraProvider.get())
+//                    }, executor)
+//                }
+//            }
+//            cameraProvider?.unbindAll()
+//            cameraProvider?.bindToLifecycle(
+//                lifecycleOwner,
+//                cameraSelector,
+//                preview,
+//                imageCapture
+//            )
+//            preview.setSurfaceProvider(previewView.surfaceProvider)
+//        }
         //val nameAndDescription = createNewPhotoNameAndDescription()
         var capturePhotoStarted by remember { mutableStateOf(false) }
 

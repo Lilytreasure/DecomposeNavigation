@@ -38,6 +38,7 @@ russhwolf = "1.1.0"
 gms = "4.4.0"
 analytics = "21.3.0"
 crashlytics = "18.3.2"
+peekaboo = "0.5.2"
 
 
 [libraries]
@@ -119,9 +120,9 @@ jetbrains-kotlinx-kotlinxCoroutinesCore = { group = "org.jetbrains.kotlinx", nam
 jetbrains-kotlinx-kotlinxSerializationJson = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization" }
 jetbrains-kotlinx-kotlinxCoroutinesSwing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "jetbrainsKotlinxCoroutines" }
 
-
-
-
+#Image Picker
+peekaboo-ui = { module = "io.github.onseok:peekaboo-ui", version.ref = "peekaboo" }
+peekaboo-image-picker = { module = "io.github.onseok:peekaboo-image-picker", version.ref = "peekaboo" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
