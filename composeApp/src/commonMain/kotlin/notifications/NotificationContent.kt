@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.absoluteOffset
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -17,6 +18,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Cached
 import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material.icons.outlined.Warning
+import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -28,7 +30,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -48,12 +53,14 @@ import com.preat.peekaboo.ui.camera.rememberPeekabooCameraState
 @Composable
 fun NotificationContent(component: NotificationComponent, modifier: Modifier = Modifier) {
     val mutableBitmapState: MutableState<ImageBitmap?> = mutableStateOf(null)
+    var showCamera by rememberSaveable { mutableStateOf(false) }
 
-    val state = rememberPeekabooCameraState(initialCameraMode = CameraMode.Back, onCapture = {bytes ->
-        mutableBitmapState.value=bytes?.toImageBitmap()
+    val state =
+        rememberPeekabooCameraState(initialCameraMode = CameraMode.Back, onCapture = { bytes ->
+            mutableBitmapState.value = bytes?.toImageBitmap()
+            showCamera=false
+        })
 
-
-    })
     Scaffold(topBar = {
         TopAppBar(title = { Text(text = "Notify", fontSize = 15.sp) })
     }) { paddingValues ->
@@ -62,7 +69,7 @@ fun NotificationContent(component: NotificationComponent, modifier: Modifier = M
                 .fillMaxSize()
         ) {
             Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 16.dp)) {
-                if (mutableBitmapState.value!=null){
+                if (mutableBitmapState.value != null) {
                     mutableBitmapState.value?.let { image ->
                         Image(
                             bitmap = image,
@@ -96,26 +103,47 @@ fun NotificationContent(component: NotificationComponent, modifier: Modifier = M
 //                }
                 //FilesUpload
                 //component.platformSpecific.CameraView()
-                Box(modifier = modifier) {
-                    PeekabooCamera(
-                        state = state,
-                        modifier = Modifier.fillMaxSize(0.7f),
-                        permissionDeniedContent = {
-                            PermissionDenied(
+                when {
+                    showCamera -> {
+                        Box(modifier = Modifier.absoluteOffset(x = 16.dp)) {
+                            PeekabooCamera(
+                                state = state,
+                                modifier = Modifier.fillMaxSize(0.7f),
+                                permissionDeniedContent = {
+                                    PermissionDenied(
+                                        modifier = Modifier.fillMaxSize(),
+                                    )
+                                },
+                            )
+                            CameraOverlay(
+                                isCapturing = state.isCapturing,
+                                onBack = {
+                                    showCamera = false
+
+                                },
+                                onCapture = {
+                                    state.capture()
+                                  //  showCamera = false
+                                },
+                                onConvert = { state.toggleCamera() },
                                 modifier = Modifier.fillMaxSize(),
                             )
-                        },
-                    )
-                    CameraOverlay(
-                        isCapturing = state.isCapturing,
-                        onBack = {
+                        }
 
-                        },
-                        onCapture = { state.capture() },
-                        onConvert = { state.toggleCamera() },
-                        modifier = Modifier.fillMaxSize(),
-                    )
+
+                    }
+
+                    else -> {
+                        Button(onClick = {
+                            showCamera=true
+
+                        }) {
+                            Text(text = "Show Camera ")
+                        }
+
+                    }
                 }
+
             }
         }
     }
