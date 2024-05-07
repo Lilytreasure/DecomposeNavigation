@@ -23,6 +23,8 @@ Decompose is a Kotlin Multiplatform library for breaking down your code into lif
 https://arkivanov.github.io/Decompose/getting-started/quick-start/<br>
 https://github.com/arkivanov/Decompose<br>
 Also includes Depedency injection with Koin and examples of how to access Device Specific APIs<Br>
+#CICD 
+  GitHub Actions(https://github.com/features/actions) - GitHub Actions makes it easy to automate all your software workflows, now with world-class CI/CD. Build, test, and deploy your code right from GitHub. Make code reviews, branch management, and issue triaging work the way you want.
 <br>
 #Android
 
