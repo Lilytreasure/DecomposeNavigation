@@ -32,8 +32,8 @@ kotlin {
             // Optional, only if you need state preservation on Darwin (Apple) targets
             export(libs.essenty.stateKeeper)
 
-            // Optional, only if you need state preservation on Darwin (Apple) targets
             export(libs.parcelizeDarwin.runtime)
+
 
             //coil
             //export("io.coil-kt.coil3:coil:3.0.0-alpha01")
@@ -96,7 +96,9 @@ kotlin {
             implementation(compose.materialIconsExtended)
 
             implementation(libs.decompose)
-            implementation(libs.decompose.jetbrains)
+
+            //modified
+            implementation("com.arkivanov.decompose:extensions-compose:3.0.0")
             api(libs.essenty.lifecycle)
             api(libs.essenty.stateKeeper)
 
@@ -141,6 +143,10 @@ kotlin {
             implementation(libs.peekaboo.ui)
             // peekaboo-image-picker
             implementation(libs.peekaboo.image.picker)
+            //modified
+            implementation("co.touchlab:stately-common:2.0.5")
+
+
         }
 
         iosMain.dependencies {
@@ -154,6 +160,7 @@ kotlin {
             api(libs.decompose)
 
             api(libs.essenty.lifecycle)
+
             //Modified
             api(libs.parcelizeDarwin.runtime)
 

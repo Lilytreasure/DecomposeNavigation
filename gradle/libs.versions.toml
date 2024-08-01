@@ -10,35 +10,35 @@ androidx-espresso-core = "3.5.1"
 androidx-material = "1.11.0"
 androidx-test-junit = "1.1.5"
 compose = "1.5.11"
-compose-plugin = "1.6.0"
-junit = "4.13.2"
-kotlin = "1.9.21"
-serialization = "1.6.0"
-moko = "0.23.0"
-moko-graphics = "0.9.0"
+compose-plugin = "1.6.1"
+peekaboo = "0.5.2"
+serialization = "1.6.2"
 mviKotlin = "3.2.1"
 logbackClassic = "1.2.11"
 sqlDelight = "2.0.0"
-koin = "3.5.0"
-ktor = "2.3.7"
-decompose = "2.2.2"
-essenty = "1.3.0"
-parcelizeDarwin = "0.2.3"
-jetbrainsCompose = "1.5.10"
+koin = "3.5.6"
+ktor = "2.3.11"
+decompose = "3.0.0"
+essenty = "2.0.0"
+kotlin = "1.9.23"
+junit = "4.13.2"
+jetbrainsCompose = "1.6.1"
 jetbrainsKotlinxCoroutines = "1.8.0"
 jetbrainsBinaryCompatibilityValidator = "0.13.2"
-androidxCore = "1.12.0"
-androidxAppcompat = "1.6.1"
-androidxLifecycle = "2.7.0"
-androidxActivity = "1.8.2"
-androidxFragment = "1.6.2"
-androidxTestCore = "1.5.0"
-extensionJetbrains = "2.0.0-compose-experimental-alpha-02"
-russhwolf = "1.1.0"
+androidxCore = "1.13.1"
+androidxAppcompat = "1.7.0"
+androidxLifecycle = "2.8.4"
+androidxActivity = "1.9.1"
+androidxFragment = "1.8.2"
+androidxTestCore = "1.6.1"
+russhwolf = "1.1.1"
 gms = "4.4.0"
 analytics = "21.3.0"
 crashlytics = "18.3.2"
-peekaboo = "0.5.2"
+parcelizeDarwin = "0.2.4"
+
+
+
 
 
 [libraries]
@@ -74,13 +74,14 @@ mvikotlin = { group = "com.arkivanov.mvikotlin", name = "mvikotlin", version.ref
 mviKotlin-mvikotlinMain = { group = "com.arkivanov.mvikotlin", name = "mvikotlin-main", version.ref = "mviKotlin" }
 mviKotlin-mvikotlinExtensionsCoroutines = { group = "com.arkivanov.mvikotlin", name = "mvikotlin-extensions-coroutines", version.ref = "mviKotlin" }
 decompose = { group = "com.arkivanov.decompose", name = "decompose", version.ref = "decompose" }
-decompose-jetbrains = { group = "com.arkivanov.decompose", name = "extensions-compose-jetbrains", version.ref = "extensionJetbrains" }
 essenty-lifecycle = { group = "com.arkivanov.essenty", name = "lifecycle", version.ref = "essenty" }
 essenty-stateKeeper = { group = "com.arkivanov.essenty", name = "state-keeper", version.ref = "essenty" }
 essenty-instanceKeeper = { group = "com.arkivanov.essenty", name = "instance-keeper", version.ref = "essenty" }
 essenty-backHandler = { group = "com.arkivanov.essenty", name = "back-handler", version.ref = "essenty" }
 parcelizeDarwin-gradlePlug = { group = "com.arkivanov.parcelize.darwin", name = "gradle-plugin", version.ref = "parcelizeDarwin" }
 parcelizeDarwin-runtime = { group = "com.arkivanov.parcelize.darwin", name = "runtime", version.ref = "parcelizeDarwin" }
+
+
 #Ktor
 ktor-ClientCore = {group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
 ktor-SerializationKotlinxJson = {group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
